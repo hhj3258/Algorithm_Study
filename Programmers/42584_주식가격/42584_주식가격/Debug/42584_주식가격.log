@@ -1,0 +1,5 @@
+﻿  42584_주식가격.cpp
+C:\Users\hhj32\Desktop\Algorithm_Study\Programmers\42584_주식가격\42584_주식가격\42584_주식가격.cpp(18,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\hhj32\Desktop\Algorithm_Study\Programmers\42584_주식가격\42584_주식가격\42584_주식가격.cpp(29,23): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+C:\Users\hhj32\Desktop\Algorithm_Study\Programmers\42584_주식가격\42584_주식가격\42584_주식가격.cpp(32,27): warning C4018: '<': signed 또는 unsigned가 일치하지 않습니다.
+  42584_주식가격.vcxproj -> C:\Users\hhj32\Desktop\Algorithm_Study\Programmers\42584_주식가격\Debug\42584_주식가격.exe
