@@ -13,7 +13,7 @@ int main()
 
     vector<string> phone_book2 = {"123", "456", "789"}; //true
 
-    solution(phone_book1);
+    solution(phone_book2);
 }
 
 bool solution(vector<string> phone_book)
