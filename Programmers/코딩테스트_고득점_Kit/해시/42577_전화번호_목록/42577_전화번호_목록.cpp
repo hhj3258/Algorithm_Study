@@ -2,7 +2,6 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <set>
 
 using namespace std;
 bool solution(vector<string> phone_book);
@@ -12,54 +11,38 @@ int main()
     vector<string> phone_book1 = {"119", "97674223", "1195524421"}; //false
 
     vector<string> phone_book2 = {"123", "456", "789"}; //true
-    bool answer = solution(phone_book2);
+
+    bool answer = solution(phone_book1);
 
     if (answer)
         cout << "answer: "
-             << "no";
+             << "true";
     else
         cout << "answer: "
-             << "yes";
+             << "false";
 }
 
 bool solution(vector<string> phone_book)
 {
     bool answer = true;
 
-    set<string> book_set;
-    string xx = "xx";
-    xx.size();
-    for (string phone_num : phone_book)
+    unordered_map<string, int> phone_map;
+    for (int i = 0; i < phone_book.size(); i++)
     {
-        book_set.insert(phone_num);
+        phone_map[phone_book[i]] = 1;
     }
 
-    // auto iter = book_set.find("119");
-    // cout << (*iter)[0];
-
-    auto temp_num = book_set.begin();
-
-    for (auto i = book_set.begin(); i != book_set.end(); i++)
+    for (int i = 0; i < phone_book.size(); i++)
     {
-        for (int j = 0; j < (*temp_num).size(); j++)
+        string phone_number = "";
+        for (int j = 0; j < phone_book[i].size(); j++)
         {
-            if (j == (*i).size())
-            {
-                break;
-            }
-
-            if ((*temp_num)[j] != (*i)[j])
-            {
-                answer = true;
-                break;
-            }
-            else
+            phone_number += phone_book[i][j];
+            if (phone_map[phone_number] && (phone_number != phone_book[i]))
             {
                 answer = false;
             }
         }
-
-        temp_num++;
     }
 
     return answer;
