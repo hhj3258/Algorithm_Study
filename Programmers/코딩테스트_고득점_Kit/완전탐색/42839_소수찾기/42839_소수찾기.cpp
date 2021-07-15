@@ -20,7 +20,6 @@ int solution(string numbers)
             temp += numbers[i];
             my_set.insert(stoi(temp));
         }
-
     } while (next_permutation(numbers.begin(), numbers.end()));
 
     int max_num = *my_set.rbegin();
@@ -35,13 +34,6 @@ int solution(string numbers)
                 isPrime[j] = false;
     }
 
-    // for (int i = 0; i < isPrime.size(); i++)
-    // {
-    //     if (isPrime[i])
-    //         cout << i << " ";
-    // }
-
-    // cout << "final" << endl;
     for (auto iter = my_set.begin(); iter != my_set.end(); iter++)
     {
         if (isPrime[*iter])
