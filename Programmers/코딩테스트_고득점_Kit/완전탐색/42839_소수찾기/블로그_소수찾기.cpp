@@ -45,7 +45,7 @@ int solution(string numbers)
     isPrime[1] = false;
 
     cout << "에라토스테네스의 체" << endl;
-    for (int i = 2; i * i < max_num; i++)
+    for (int i = 2; i * i <= max_num; i++)
     {
         if (isPrime[i])
             for (int j = i * i; j <= max_num; j += i)
