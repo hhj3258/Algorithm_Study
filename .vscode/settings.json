@@ -1,22 +1,24 @@
 {
-    "files.associations": {
-        "xtree": "cpp",
-        "iostream": "cpp",
-        "ostream": "cpp",
-        "unordered_map": "cpp",
-        "array": "cpp",
-        "deque": "cpp",
-        "string": "cpp",
-        "vector": "cpp",
-        "string_view": "cpp",
-        "initializer_list": "cpp",
-        "cwchar": "cpp",
-        "exception": "cpp",
-        "iosfwd": "cpp",
-        "istream": "cpp",
-        "new": "cpp",
-        "streambuf": "cpp",
-        "type_traits": "cpp",
-        "utility": "cpp"
-    }
+  "files.associations": {
+    "xtree": "cpp",
+    "iostream": "cpp",
+    "ostream": "cpp",
+    "unordered_map": "cpp",
+    "array": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp",
+    "cwchar": "cpp",
+    "exception": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "new": "cpp",
+    "streambuf": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "map": "cpp",
+    "cmath": "cpp"
+  }
 }
