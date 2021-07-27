@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <vector>
 using namespace std;
 
 void Decompose_sum(int n)
@@ -8,8 +7,8 @@ void Decompose_sum(int n)
     string str_n = to_string(n);
     int digits = str_n.size();
     int inc_num = n - 9 * digits;
+    int answer = 0;
 
-    vector<int> answers;
     for (inc_num; inc_num <= n; inc_num++)
     {
         string str_inc_num = to_string(inc_num);
@@ -19,13 +18,13 @@ void Decompose_sum(int n)
             temp += (str_inc_num[i] - '0');
 
         if (temp == n)
-            answers.push_back(inc_num);
+        {
+            answer = inc_num;
+            break;
+        }
     }
 
-    if (answers.empty())
-        cout << 0 << endl;
-    else
-        cout << answers[0] << endl;
+    cout << answer << endl;
 }
 
 int main()
