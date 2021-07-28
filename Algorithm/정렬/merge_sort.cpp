@@ -24,9 +24,13 @@ void merge(int left, int right)
         }
     }
 
-    int min_idx = K < mid ? K : R;
+    int min_idx;
+    if (L <= mid)
+        min_idx = L;
+    else
+        min_idx = R;
 
-    while (min_idx <= right)
+    while (K <= right)
     {
         v2[K++] = v1[min_idx++];
     }
@@ -52,7 +56,7 @@ int main()
 
     srand((unsigned int)time(NULL));
 
-    cout << "[input]" << endl;
+    cout << "[input]  ";
     for (int i = 0; i < 10; i++)
     {
         n = rand() % 10;
@@ -61,10 +65,9 @@ int main()
         v1.push_back(n);
         v2.push_back(0);
     }
-    cout << endl
-         << endl;
+    cout << endl;
 
-    cout << "[output]" << endl;
+    cout << "[output] ";
     partition(0, v1.size() - 1);
 
     for (int i = 0; i < 10; i++)
