@@ -10,6 +10,7 @@ void dfs(int cnt, vector<int> vec, vector<bool> visited)
     {
         for (int i = 0; i < M; i++)
             cout << vec[i] << ' ';
+
         cout << '\n';
         return;
     }
