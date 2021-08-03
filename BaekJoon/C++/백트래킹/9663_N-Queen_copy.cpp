@@ -75,16 +75,11 @@ vector<vector<bool>> temp;
 void N_Queen(int qCnt, vector<vector<bool>> visited, int x, int y)
 {
     cout << "qCnt: " << qCnt << endl;
-    // if (x == N && y == N)
-    // {
-    if (qCnt == N - 1)
+    if (qCnt == N)
     {
         answer++;
         return;
     }
-    //     else
-    //         return;
-    // }
 
     for (int i = 0; i < N; i++)
     {
@@ -92,32 +87,11 @@ void N_Queen(int qCnt, vector<vector<bool>> visited, int x, int y)
         {
             if (!visited[i][j])
             {
-                cout << "One" << endl;
-                for (int i = 0; i < N; i++)
-                {
-                    for (int j = 0; j < N; j++)
-                        cout << visited[i][j] << ' ';
-                    cout << '\n';
-                }
-                cout << "---------------------------------\n";
-
                 cout << "[" << i << ", " << j << "]" << endl;
-
                 temp = visited;
                 visited = TVisit(visited, i, j);
                 N_Queen(qCnt + 1, visited, i, j);
                 visited = temp;
-
-                cout << "Two" << endl;
-                for (int i = 0; i < N; i++)
-                {
-                    for (int j = 0; j < N; j++)
-                    {
-                        cout << visited[i][j] << ' ';
-                    }
-                    cout << '\n';
-                }
-                cout << "[" << i << ", " << j << "]" << endl;
             }
         }
     }
