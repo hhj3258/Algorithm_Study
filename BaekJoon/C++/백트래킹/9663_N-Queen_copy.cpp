@@ -4,9 +4,8 @@
 using namespace std;
 
 int N; // 1 ≤ N < 15
-int answer = 0;
 
-void TVisite(vector<vector<bool>> &visited, int i, int j)
+vector<vector<bool>> TVisit(vector<vector<bool>> visited, int i, int j)
 {
     //가로축
     for (int k = 0; k < N; k++)
@@ -35,9 +34,11 @@ void TVisite(vector<vector<bool>> &visited, int i, int j)
         if ((i + n) == (N - 1) || (j - n) == 0)
             break;
     }
+
+    return visited;
 }
 
-void FVisite(vector<vector<bool>> &visited, int i, int j)
+void FVisit(vector<vector<bool>> &visited, int i, int j)
 {
     //가로축
     for (int k = 0; k < N; k++)
@@ -69,15 +70,21 @@ void FVisite(vector<vector<bool>> &visited, int i, int j)
 }
 
 int depth = 0;
-
+int answer = 0;
+vector<vector<bool>> temp;
 void N_Queen(int qCnt, vector<vector<bool>> visited, int x, int y)
 {
     cout << "qCnt: " << qCnt << endl;
+    // if (x == N && y == N)
+    // {
     if (qCnt == N - 1)
     {
         answer++;
         return;
     }
+    //     else
+    //         return;
+    // }
 
     for (int i = 0; i < N; i++)
     {
@@ -85,8 +92,23 @@ void N_Queen(int qCnt, vector<vector<bool>> visited, int x, int y)
         {
             if (!visited[i][j])
             {
-                TVisite(visited, i, j);
-                /*
+                cout << "One" << endl;
+                for (int i = 0; i < N; i++)
+                {
+                    for (int j = 0; j < N; j++)
+                        cout << visited[i][j] << ' ';
+                    cout << '\n';
+                }
+                cout << "---------------------------------\n";
+
+                cout << "[" << i << ", " << j << "]" << endl;
+
+                temp = visited;
+                visited = TVisit(visited, i, j);
+                N_Queen(qCnt + 1, visited, i, j);
+                visited = temp;
+
+                cout << "Two" << endl;
                 for (int i = 0; i < N; i++)
                 {
                     for (int j = 0; j < N; j++)
@@ -95,19 +117,7 @@ void N_Queen(int qCnt, vector<vector<bool>> visited, int x, int y)
                     }
                     cout << '\n';
                 }
-
                 cout << "[" << i << ", " << j << "]" << endl;
-                cout << "now count: "
-                     << ++count << endl;
-                */
-                cout << "depth: " << ++depth << endl;
-                cout << i << ' ' << j << endl;
-                //cout << visited[i][j] << endl;
-
-                N_Queen(qCnt + 1, visited, i, j);
-
-                cout << "depth: " << --depth << endl;
-                FVisite(visited, i, j);
             }
         }
     }
