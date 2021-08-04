@@ -1,66 +1,71 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
+#include <time.h>
 using namespace std;
 
 int N; // 1 ≤ N < 15
-int answer;
-
-void Visit(vector<vector<bool>> &visited, int i, int j)
+int answer = 0;
+int cnt = 0;
+vector<vector<bool>> Visit(vector<vector<bool>> visited, int i, int j)
 {
-    //가로축
-    for (int k = 0; k < N; k++)
+    visited[i][j] = true;
+
+    for (int n = 1; i + n < N; n++)
     {
-        visited[i][k] = true;
-        visited[k][j] = true;
+        visited[i + n][j] = true;
+
+        if (j + n < N)
+            visited[i + n][j + n] = true;
+
+        if (j - n >= 0)
+            visited[i + n][j - n] = true;
     }
 
-    // 대각축(\)
-    for (int n = 0;; n++)
-    {
-        if (i + n < N)
-        {
-            if (j + n < N)
-                visited[i + n][j + n] = true;
-
-            if (j - n >= 0)
-                visited[i + n][j - n] = true;
-        }
-        else
-            break;
-    }
+    return visited;
 }
 
-void N_Queen(int qCnt, vector<vector<bool>> visited, int x)
+time_t s, e;
+int sum = 0;
+vector<int> nowQs(15, -1);
+void N_Queen(int qCnt, vector<vector<bool>> visited)
 {
     if (qCnt == N)
     {
         answer++;
-        cout << answer << ' ';
+        // cout << "[ ";
+        // for (int i = 0; i < N; i++)
+        //     cout << nowQs[i] << ' ';
+        // cout << "]\n";
+
+        // cout << answer << " \n";
         return;
     }
 
-    for (int i = x; i < N; i++)
+    for (int j = 0; j < N; j++)
     {
-        for (int j = 0; j < N; j++)
-        {
-            if (!visited[i][j])
-            {
-                vector<vector<bool>> temp = visited;
-                Visit(visited, i, j);
-                N_Queen(qCnt + 1, visited, i + 1);
-                visited = temp;
-            }
-        }
+        if (visited[qCnt][j])
+            continue;
+
+        s = clock();
+
+        N_Queen(qCnt + 1, Visit(visited, qCnt, j));
+
+        e = clock();
+        sum += e - s;
     }
 }
 
 int main()
 {
     cin >> N;
+    time_t start = clock();
+
     vector<vector<bool>> visited(N, vector<bool>(N)); // N*N
-
-    N_Queen(0, visited, 0);
-
-    cout << answer << endl;
+    N_Queen(0, visited);
+    cout << endl
+         << answer << endl;
+    time_t end = clock();
+    double result_time = (double)(end - start);
+    cout << "time: " << result_time << " ms\n";
+    cout << "sum: " << sum << endl;
 }
