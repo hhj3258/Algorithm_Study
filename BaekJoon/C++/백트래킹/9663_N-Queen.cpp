@@ -2,28 +2,21 @@
 #include <vector>
 using namespace std;
 
-int N; // 1 ¡Â N < 15
+int N;
 int answer = 0;
 
-vector<vector<bool>> Visit(vector<vector<bool>> visited, int i, int j)
+vector<int> visited(15);
+
+bool Check(int qCnt)
 {
-    visited[i][j] = true;
+    for (int i = 0; i < qCnt; i++)
+        if (visited[qCnt] == visited[i] || qCnt - i == abs(visited[qCnt] - visited[i]))
+            return 0;
 
-    for (int n = 1; i + n < N; n++)
-    {
-        visited[i + n][j] = true;
-
-        if (j + n < N)
-            visited[i + n][j + n] = true;
-
-        if (j - n >= 0)
-            visited[i + n][j - n] = true;
-    }
-
-    return visited;
+    return 1;
 }
 
-void N_Queen(int qCnt, vector<vector<bool>> visited)
+void N_Queen(int qCnt)
 {
     if (qCnt == N)
     {
@@ -33,19 +26,16 @@ void N_Queen(int qCnt, vector<vector<bool>> visited)
 
     for (int j = 0; j < N; j++)
     {
-        if (visited[qCnt][j])
-            continue;
+        visited[qCnt] = j;
 
-        N_Queen(qCnt + 1, Visit(visited, qCnt, j));
+        if (Check(qCnt))
+            N_Queen(qCnt + 1);
     }
 }
 
 int main()
 {
     cin >> N;
-
-    vector<vector<bool>> visited(N, vector<bool>(N)); // N*N
-    N_Queen(0, visited);
-
+    N_Queen(0);
     cout << answer;
 }
