@@ -1,91 +1,88 @@
 #include <iostream>
 #include <vector>
-
-#define SPACE 81
-#define COL 9
 using namespace std;
 
-vector<int> board(SPACE);
-int temp[] = {1, 2, 3, 4, 5, 6, 7, 8, 9};
-int zero_cnt = 0;
+vector<vector<int>> board(9, vector<int>(9));
+vector<pair<int, int>> zeroV;
 
-bool Check(int k)
+int zero_cnt = 0;
+bool complete = false;
+
+bool Check(int row, int col)
 {
-    for (int i = k + 1; i < COL; i++)
+    int nineX = row / 3;
+    int nineY = col / 3;
+
+    for (int i = nineX * 3; i < nineX * 3 + 3; i++)
     {
-        //가로
-        if (board[k] == board[i])
+        for (int j = nineY * 3; j < nineY * 3 + 3; j++)
+        {
+            if (board[row][col] == board[i][j])
+                if (i != row && j != col)
+                    return 0;
+        }
+    }
+
+    for (int i = 0; i < 9; i++)
+    {
+        if (i != row && board[row][col] == board[i][col])
             return 0;
-        //세로
-        if (board[k] == board[i + 8 * i])
+
+        if (i != col && board[row][col] == board[row][i])
             return 0;
     }
 
     return 1;
 }
 
-void Sudoku(int cnt, int num)
+void Sudoku(int idx)
 {
-    if (zero_cnt == 0)
+    if (zero_cnt == idx)
     {
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 9; j++)
+                cout << board[i][j] << ' ';
+            cout << '\n';
+        }
+        cout << '\n';
+
+        complete = true;
         return;
     }
 
-    for (int i = cnt; i < (COL + cnt); i++)
+    for (int n = 1; n < 10; n++)
     {
-        if (board[i] == 0)
-        {
-            for (int n = 1; n < 10; n++)
-            {
-                //cout << i + cnt << ' ';
-                board[i] = n;
+        board[zeroV[idx].first][zeroV[idx].second] = n;
 
-                if (Check(i))
-                {
-                    zero_cnt--;
-                    Sudoku(cnt + COL, 1);
-                    break;
-                }
-            }
-        }
+        if (Check(zeroV[idx].first, zeroV[idx].second))
+            Sudoku(idx + 1);
+
+        if (complete)
+            return;
     }
+
+    board[zeroV[idx].first][zeroV[idx].second] = 0;
 }
 
 int main()
 {
-    int num;
-    vector<int> aa;
-    for (int i = 0; i < SPACE; i++)
+    int input;
+
+    for (int i = 0; i < 9; i++)
     {
-        cin >> num;
-        board[i] = num;
-        if (num == 0)
+        for (int j = 0; j < 9; j++)
         {
-            zero_cnt++;
-            aa.push_back(i);
+            cin >> input;
+            board[i][j] = input;
+
+            if (input == 0)
+            {
+                zero_cnt++;
+                zeroV.push_back(make_pair(i, j));
+            }
         }
     }
-    cout << endl;
-    cout << "zeros: ";
-    for (int i : aa)
-        cout << i << ' ';
-    cout << endl
-         << endl;
 
-    // for (int i = 0; i < SPACE; i++)
-    // {
-    //     if (i % 9 == 0)
-    //         cout << '\n';
-    //     cout << i << ' ';
-    // }
-
-    Sudoku(0, 1);
-
-    cout << endl;
-    for (int i = 0; i < SPACE; i++)
-    {
-        if (i % 9 == 0)
-            cout << '\n';
-        cout << board[i] << ' ';
-    }
+    Sudoku(0);
 }
