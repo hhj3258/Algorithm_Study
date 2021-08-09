@@ -11,6 +11,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
 char Grade(float myScore)
@@ -36,40 +37,28 @@ string solution(vector<vector<int>> scores)
     float aver[10] = {
         0,
     };
-
-    for (int k = 0; k < scores.size(); k++)
+    for (int i = 0; i < scores.size(); i++)
     {
-        int minV = 101;
-        int maxV = -1;
-        for (int i = 0; i < scores.size(); i++)
-        {
-            if (scores[i][k] < minV)
-                minV = scores[i][k];
-            if (scores[i][k] > maxV)
-                maxV = scores[i][k];
-        }
+        vector<pair<int, int>> student(scores.size());
 
-        int onlyN = 0;
-        for (int i = 0; i < scores.size(); i++)
-        {
-            if (scores[i][k] == minV)
-                onlyN++;
-            if (scores[i][k] == maxV)
-                onlyN++;
-        }
+        for (int j = 0; j < scores.size(); j++)
+            student[j] = (make_pair(scores[j][i], j));
 
-        int divN = 0;
-        for (int i = 0; i < scores.size(); i++)
-        {
-            if (i == k && onlyN == 1)
-                continue;
+        sort(student.begin(), student.end());
 
-            aver[k] += scores[i][k];
-            divN++;
-        }
+        if (student[0].second == i)
+            if (student[0].first != student[1].first)
+                student.erase(student.begin());
 
-        aver[k] /= divN;
-        answer += Grade(aver[k]);
+        if (student[student.size() - 1].second == i)
+            if (student[student.size() - 1].first != student[student.size() - 2].first)
+                student.erase(student.end());
+
+        for (int j = 0; j < student.size(); j++)
+            aver[i] += student[j].first;
+
+        aver[i] /= student.size();
+        answer += Grade(aver[i]);
     }
 
     return answer;
