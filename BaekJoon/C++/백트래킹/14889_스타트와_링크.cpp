@@ -1,19 +1,47 @@
 #include <iostream>
-
 using namespace std;
 
-int N; //4 ¡Â N ¡Â 20, NÀº Â¦¼ö
-int parameters[20][20];
-int diff = 1000000001;
+int N; //4 ? N ? 20, N? ??
+int param[20][20];
+int minV = 1000000000;
+bool check[20];
+bool endFlag = false;
 
-void TeamBuilding(int i, int j)
+void TeamBuilding(int cnt, int num)
 {
-
-    for (int x = 0; x < N; x++)
+    if (cnt == N / 2)
     {
-        for (int y = 0; y < N; y++)
+        int start = 0;
+        int link = 0;
+
+        for (int i = 0; i < N; i++)
         {
+            for (int j = 0; j < N; j++)
+            {
+                if (check[i] && check[j])
+                    start += param[i][j];
+                if (!check[i] && !check[j])
+                    link += param[i][j];
+            }
         }
+
+        if (abs(start - link) < minV)
+            minV = abs(start - link);
+
+        if (minV == 0)
+            endFlag = true;
+
+        return;
+    }
+
+    for (int i = num; i < N; i++)
+    {
+        check[i] = true;
+        TeamBuilding(cnt + 1, i + 1);
+        check[i] = false;
+
+        if (endFlag)
+            return;
     }
 }
 
@@ -23,7 +51,9 @@ int main()
 
     for (int i = 0; i < N; i++)
         for (int j = 0; j < N; j++)
-            cin >> parameters[i][j];
+            cin >> param[i][j];
 
-    TeamBuilding(0, 1);
+    TeamBuilding(0, 0);
+
+    cout << minV;
 }
