@@ -8,7 +8,7 @@ using namespace std;
 void Prints(vector<vector<int>> game_board);
 void Prints(vector<vector<bool>> game_board);
 vector<set<pair<int, int>>> PuzzleDiv(vector<vector<int>> &tables);
-vector<vector<pair<int, int>>> PuzzleReduction(vector<vector<pair<int, int>>> tempV, vector<set<pair<int, int>>> test);
+vector<vector<pair<int, int>>> PuzzleReduction(vector<set<pair<int, int>>> test);
 
 vector<vector<int>> game_board = {{1, 1, 0, 0, 1, 0}, {0, 0, 1, 0, 1, 0}, {0, 1, 1, 0, 0, 1}, {1, 1, 0, 1, 1, 1}, {1, 0, 0, 0, 1, 0}, {0, 1, 1, 1, 0, 0}};
 vector<vector<int>> table = {{1, 0, 0, 1, 1, 0}, {1, 0, 1, 0, 1, 0}, {0, 1, 1, 0, 1, 1}, {0, 0, 1, 0, 0, 0}, {1, 1, 0, 1, 1, 0}, {0, 1, 0, 0, 0, 0}};
@@ -27,8 +27,10 @@ int solution(vector<vector<int>> game_board, vector<vector<int>> table)
 }
 
 int puzzle_idx = 0;
+//조각 나누기
 vector<set<pair<int, int>>> PuzzleDiv(vector<vector<int>> &tables)
 {
+    puzzle_idx = 0;
     vector<set<pair<int, int>>> test;
     for (int i = 0; i < tables.size(); i++)
     {
@@ -37,8 +39,8 @@ vector<set<pair<int, int>>> PuzzleDiv(vector<vector<int>> &tables)
             if (tables[i][j] == 1)
             {
                 set<pair<int, int>> temp;
+                temp.insert(make_pair(i, j));
                 test.push_back(temp);
-                test[puzzle_idx].insert(make_pair(i, j));
 
                 for (auto iter = test[puzzle_idx].begin(); iter != test[puzzle_idx].end(); iter++)
                 {
@@ -69,8 +71,11 @@ vector<set<pair<int, int>>> PuzzleDiv(vector<vector<int>> &tables)
     return test;
 }
 
-vector<vector<pair<int, int>>> PuzzleReduction(vector<vector<pair<int, int>>> tempV, vector<set<pair<int, int>>> test)
+//좌표 축소
+vector<vector<pair<int, int>>> PuzzleReduction(vector<set<pair<int, int>>> test)
 {
+    vector<vector<pair<int, int>>> tempV;
+
     for (int i = 0; i < puzzle_idx; i++)
     {
         tempV.push_back(vector<pair<int, int>>(0));
@@ -96,6 +101,28 @@ vector<vector<pair<int, int>>> PuzzleReduction(vector<vector<pair<int, int>>> te
     return tempV;
 }
 
+//반시계방향 회전 90도
+vector<vector<pair<int, int>>> TableRotation(vector<vector<pair<int, int>>> final_table)
+{
+
+    for (int i = 0; i < final_table.size(); i++)
+    {
+        int N = -1;
+        for (int j = 0; j < final_table[i].size(); j++)
+        {
+            if (final_table[i][j].first > N)
+                N = final_table[i][j].first;
+            if (final_table[i][j].second > N)
+                N = final_table[i][j].second;
+        }
+
+        for (int j = 0; j < final_table[i].size(); j++)
+            final_table[i][j] = make_pair(N - final_table[i][j].second, final_table[i][j].first);
+    }
+
+    return final_table;
+}
+
 int main()
 {
     // Prints(game_board);
@@ -113,21 +140,18 @@ int main()
     //     cout << endl;
     // }
 
-    // for (int i = 0; i < N; i++)
-    //     for (int j = 0; j < N; j++)
-    //         temp_arr[i][j] = arr[N - j - 1][i];
-
-    vector<vector<pair<int, int>>> tempV;
-    tempV = PuzzleReduction(tempV, puzzles);
+    vector<vector<pair<int, int>>> final_table = PuzzleReduction(puzzles);
+    final_table = TableRotation(final_table);
 
     cout << "<puzzles>\n";
-    for (int i = 0; i < tempV.size(); i++)
+    for (int i = 0; i < final_table.size(); i++)
     {
-        for (int j = 0; j < tempV[i].size(); j++)
-            cout << tempV[i][j].first << ' ' << tempV[i][j].second << endl;
+        for (int j = 0; j < final_table[i].size(); j++)
+            cout << final_table[i][j].first << ' ' << final_table[i][j].second << endl;
         cout << endl;
     }
 
+    //게임보드 0-1 변환
     for (int i = 0; i < game_board.size(); i++)
     {
         for (int j = 0; j < game_board[i].size(); j++)
@@ -138,21 +162,16 @@ int main()
                 game_board[i][j] = 1;
         }
     }
-    cout << "chk1";
-    vector<set<pair<int, int>>> boardBlanks = PuzzleDiv(game_board);
-    cout << "chk2";
-    vector<vector<pair<int, int>>> boardBlanksReduct;
-    cout << "chk3";
-    boardBlanksReduct = PuzzleReduction(boardBlanksReduct, boardBlanks);
-    cout << "chk4";
-    cout << "<board>\n";
 
-    for (int i = 0; i < boardBlanksReduct.size(); i++)
+    vector<set<pair<int, int>>> boardBlanks = PuzzleDiv(game_board);
+    vector<vector<pair<int, int>>> final_board = PuzzleReduction(boardBlanks);
+
+    cout << "<board>\n";
+    for (int i = 0; i < final_board.size(); i++)
     {
-        for (int j = 0; j < boardBlanksReduct[i].size(); j++)
+        for (int j = 0; j < final_board[i].size(); j++)
         {
-            cout << "ij: " << i << " " << j << endl;
-            cout << boardBlanksReduct[i][j].first << ' ' << boardBlanksReduct[i][j].second << endl;
+            cout << final_board[i][j].first << ' ' << final_board[i][j].second << endl;
         }
         cout << endl;
     }
