@@ -2,32 +2,19 @@
 #include <vector>
 using namespace std;
 
-int N;
+long long N;
 
-void Solve(vector<int> dist, vector<int> oil)
+void Solve(vector<long long> dist, vector<long long> oil)
 {
-    long long my_oil = 0;
-    long long credit = 0;
+    long long temp = oil[0];
+    long long credit = temp * dist[0];
 
-    for (int i = 0; i < dist.size(); i++)
+    for (int i = 1; i < N - 1; i++)
     {
-        // cout << my_oil << endl;
-        if (my_oil == 0)
-        {
-            if (oil[i] > oil[i + 1])
-            {
-                credit += oil[i] * dist[i];
-                my_oil += dist[i];
-            }
-            else if (oil[i] <= oil[i + 1])
-            {
-                credit += oil[i] * (dist[i] + dist[i + 1]);
-                my_oil += dist[i] + dist[i + 1];
-            }
-        }
-        // cout << my_oil << endl;
-        // cout << endl;
-        my_oil -= dist[i];
+        if (temp > oil[i])
+            temp = oil[i];
+
+        credit += temp * dist[i];
     }
 
     cout << credit;
@@ -36,8 +23,8 @@ void Solve(vector<int> dist, vector<int> oil)
 int main()
 {
     cin >> N;
-    vector<int> dist(N - 1);
-    vector<int> oil(N);
+    vector<long long> dist(N - 1);
+    vector<long long> oil(N);
 
     for (int i = 0; i < N - 1; i++)
         cin >> dist[i];
