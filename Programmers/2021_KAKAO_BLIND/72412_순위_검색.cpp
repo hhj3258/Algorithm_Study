@@ -1,144 +1,81 @@
-//info "개발언어 3, 직군 2, 경력 2, 소울푸드 2, 점수" -> 공백으로 구분
-
-//[조건]은 "개발언어 and 직군 and 경력 and 소울푸드" 형식의 문자열
-//'-' 표시는 해당 조건을 고려하지 않겠다는 의미입니다.
-//ex)  "cpp and - and senior and pizza 500"
-
 #include <string>
 #include <vector>
+#include <unordered_map>
+#include <sstream>
 #include <iostream>
+#include <algorithm>
 using namespace std;
+
+unordered_map<string, int> m;
+vector<int> List[4][3][3][3];
 
 vector<int> solution(vector<string> info, vector<string> query)
 {
-    vector<int> answer(query.size());
+    m["-"] = 0; //query에서만 쓰임
 
-    vector<vector<string>> new_info(info.size());
-    for (int i = 0; i < new_info.size(); i++)
+    m["cpp"] = 1;
+    m["java"] = 2;
+    m["python"] = 3;
+
+    m["backend"] = 1;
+    m["frontend"] = 2;
+
+    m["junior"] = 1;
+    m["senior"] = 2;
+
+    m["chicken"] = 1;
+    m["pizza"] = 2;
+
+    for (auto str : info)
     {
-        string temp = "";
-        for (int j = 0; j < info[i].size(); j++)
+        stringstream ss(str);
+        string a, b, c, d; // 언어, 직군, 경력, 소울푸드
+        int score;
+        //java backend junior pizza 150
+        ss >> a >> b >> c >> d >> score;
+        //arr[4] = {2, 1, 1, 2};
+        int arr[4] = {m[a], m[b], m[c], m[d]};
+
+        //공집합도 구한다(모든 조건이 '-'인 경우)
+        for (int i = 0; i < (1 << 4); i++)
         {
-            if (info[i][j] == ' ')
+            int idx[4] = {0};
+            for (int j = 0; j < 4; j++)
             {
-                new_info[i].push_back(temp);
-                temp.clear();
-            }
-            else
-            {
-                temp += info[i][j];
-            }
-        }
-        new_info[i].push_back(temp);
-    }
-
-    // for (int i = 0; i < new_info.size(); i++)
-    // {
-    //     for (int j = 0; j < new_info[i].size(); j++)
-    //     {
-    //         cout << new_info[i][j] << ' ';
-    //     }
-    //     cout << endl;
-    // }
-
-    vector<vector<string>> new_query(query.size());
-    for (int i = 0; i < new_query.size(); i++)
-    {
-        string temp = "";
-        for (int j = 0; j < query[i].size(); j++)
-        {
-            if (query[i][j] == ' ')
-            {
-                new_query[i].push_back(temp);
-                temp.clear();
-            }
-            else
-            {
-                temp += query[i][j];
-            }
-        }
-        new_query[i].push_back(temp);
-    }
-
-    for (int i = 0; i < new_query.size(); i++)
-    {
-        for (int j = 0; j < new_query[i].size(); j++)
-        {
-            if (new_query[i][j] == "and")
-            {
-                new_query[i].erase(new_query[i].begin() + j);
-                j--;
-            }
-        }
-    }
-
-    // for (int i = 0; i < new_query.size(); i++)
-    // {
-    //     for (int j = 0; j < new_query[i].size(); j++)
-    //     {
-    //         cout << new_query[i][j] << ", ";
-    //     }
-    //     cout << endl;
-    // }
-
-    //개발팀 행 크기
-    for (int i = 0; i < new_query.size(); i++)
-    {
-        vector<string> now_q = new_query[i];
-
-        for (int a = 0; a < new_info.size(); a++)
-        {
-            bool flag = false;
-            for (int b = 0; b < new_info[a].size(); b++)
-            {
-                if (b == new_info[a].size() - 1)
+                if ((i & (1 << j)))
                 {
-                    int x = stoi(new_info[a][b]);
-                    int y = stoi(now_q[b]);
-                    if (x >= y)
-                        flag = true;
-                    else
-                        flag = false;
-                }
-                else if (new_info[a][b] == now_q[b] || now_q[b] == "-")
-                {
-                    flag = true;
-                }
-                else
-                {
-                    flag = false;
-                    break;
+                    idx[j] = arr[j];
                 }
             }
-            if (flag)
-            {
-                // cout << i << endl;
-                // for (int x = 0; x < new_info[a].size(); x++)
-                // {
-                //     cout << new_info[a][x] << ' ';
-                // }
-                // cout << endl;
-                // for (int x = 0; x < new_info[a].size(); x++)
-                // {
-                //     cout << now_q[x] << ' ';
-                // }
-                // cout << endl
-                //      << endl;
+            for (int x = 0; x < 4; x++)
+                cout << idx[x] << ' ';
+            cout << score << endl;
 
-                answer[i]++;
-            }
+            List[idx[0]][idx[1]][idx[2]][idx[3]].push_back(score);
         }
+        cout << endl;
     }
 
-    // for (int a = 0; a < new_info.size(); a++)
-    // {
-    //     for (int b = 0; b < new_info[a].size(); b++)
-    //     {
-    //         if (new_info[a][b] == new_query[i][j])
-    //         {
-    //         }
-    //     }
-    // }
+    for (int a = 0; a < 4; a++)
+        for (int b = 0; b < 3; b++)
+            for (int c = 0; c < 3; c++)
+                for (int d = 0; d < 3; d++)
+                    sort(List[a][b][c][d].begin(), List[a][b][c][d].end());
+
+    vector<int> answer;
+
+    for (auto str : query)
+    {
+        stringstream ss(str);
+        string a, b, c, d, temp;
+        int score;
+        ss >> a >> temp >> b >> temp >> c >> temp >> d >> score;
+
+        auto lists = List[m[a]][m[b]][m[c]][m[d]];
+        auto lower = lower_bound(lists.begin(), lists.end(), score);
+
+        answer.push_back(lists.end() - lower);
+    }
 
     return answer;
 }
