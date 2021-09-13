@@ -3,69 +3,54 @@ using namespace std;
 
 vector<int> solution(vector<int> enter, vector<int> leave)
 {
-    vector<int> answer(enter.size() + 1);
+    int num = enter.size();
+
+    vector<int> answer(num);
     vector<int> room;
+    vector<vector<int>> visit(num + 1, vector<int>(num + 1));
+    vector<vector<int>> meet(num + 1, vector<int>(1));
 
-    map<int, set<int>> map;
-
-    while (leave.size() > 0)
+    int ei = 0, li = 0;
+    while (ei < num || li < num)
     {
-        for (auto map_it = map.begin(); map_it != map.end(); map_it++)
+        bool chk = false;
+        for (int i = 0; i < room.size(); i++)
+        {
+            if (leave[li] == room[i])
+            {
+                chk = true;
+                room.erase(room.begin() + i);
+                li += 1;
+
+                break;
+            }
+        }
+
+        if (!chk)
         {
             for (int i = 0; i < room.size(); i++)
-                if ((*map_it).first != room[i])
-                    (*map_it).second.insert(room[i]);
+                meet[enter[ei]].push_back(room[i]);
+
+            room.push_back(enter[ei]);
+            ei += 1;
         }
-        if (enter.size() > 0)
-        {
-            map[enter.front()];
-            room.push_back(enter.front());
-            enter.erase(enter.begin());
-        }
-
-        cout << "room: ";
-        for (int i = 0; i < room.size(); i++)
-            cout << room[i] << ' ';
-        cout << endl;
-
-        cout << "enter: ";
-        for (int i = 0; i < enter.size(); i++)
-            cout << enter[i] << ' ';
-        cout << endl;
-
-        cout << "leave: ";
-        for (int i = 0; i < leave.size(); i++)
-            cout << leave[i] << ' ';
-        cout << endl;
-
-        auto it = find(room.begin(), room.end(), leave.front());
-        if (it != room.end())
-        {
-            room.erase(it);
-            leave.erase(leave.begin());
-        }
-
-        // cout << "answer: ";
-        // for (int i = 0; i < answer.size(); i++)
-        //     cout << answer[i] << ' ';
-        // cout << endl;
-
-        cout << endl;
     }
 
-    for (auto map_it = map.begin(); map_it != map.end(); map_it++)
+    for (int i = 1; i < meet.size(); i++)
     {
-        cout << (*map_it).first << ": ";
-        for (auto set_it = (*map_it).second.begin(); set_it != (*map_it).second.end(); set_it++)
+        cout << i << ": ";
+        for (int j = 1; j < meet[i].size(); j++)
         {
-            cout << (*set_it);
+            cout << meet[i][j] << ' ';
+            visit[i][meet[i][j]] = 1;
+            visit[meet[i][j]][i] = 1;
         }
         cout << endl;
     }
 
-    cout << "answer: ";
-    for (int i : answer)
-        cout << i << ' ';
+    for (int i = 1; i < visit.size(); i++)
+        for (int j = 1; j < visit.size(); j++)
+            answer[i - 1] += visit[i][j];
 
     return answer;
 }
@@ -81,5 +66,12 @@ int main()
     vector<int> enter3 = {3, 2, 1};
     vector<int> leave3 = {2, 1, 3};
 
-    solution(enter2, leave2);
+    vector<int> enter4 = {1, 4, 2, 3};
+    vector<int> leave4 = {2, 1, 4, 3};
+
+    vector<int> answer = solution(enter2, leave2);
+
+    cout << "answer: ";
+    for (int i : answer)
+        cout << i << ' ';
 }
