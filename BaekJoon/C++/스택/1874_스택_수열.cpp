@@ -1,49 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+int n;
+
 void Solve(vector<int> &nums)
 {
-    int asc_num = 1;
-    int idx = 0;
+    int nums_idx = 0;
 
     stack<int> myStack;
-    vector<int> answer;
+    vector<char> ans;
 
-    for (int i : nums)
-        cout << i << ' ';
-    cout << endl;
-
-    while (idx < nums.size())
+    for (int i = 1; i <= n; i++)
     {
-        if (!myStack.empty())
+        myStack.push(i);
+        ans.push_back('+');
+
+        while (!myStack.empty() && myStack.top() == nums[nums_idx])
         {
-            while (myStack.top() == nums[idx])
-            {
-                cout << "stack: " << myStack.top() << " nums[" << idx << "]: " << nums[idx] << endl;
-                answer.push_back(myStack.top());
-                myStack.pop();
-                idx++;
-
-                if (myStack.empty() || idx == nums.size())
-                    break;
-            }
+            ans.push_back('-');
+            myStack.pop();
+            nums_idx++;
         }
-
-        myStack.push(asc_num++);
     }
 
-    for (int i : answer)
-        cout << i << ' ';
-    cout << endl;
+    if (!myStack.empty())
+        cout << "NO";
+    else
+        for (char c : ans)
+            cout << c << '\n';
 }
 
 int main()
 {
-    int n;
     cin >> n;
-
     vector<int> nums(n);
-    for (int i = 0; i < nums.size(); i++)
+    for (int i = 0; i < n; i++)
         cin >> nums[i];
 
     Solve(nums);
