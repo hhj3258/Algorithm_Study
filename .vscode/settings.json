@@ -20,13 +20,10 @@
     "utility": "cpp",
     "map": "cpp",
     "cmath": "cpp",
-<<<<<<< Updated upstream
-    "functional": "cpp"
-=======
+    "functional": "cpp",
     "algorithm": "cpp",
     "limits": "cpp",
     "set": "cpp",
     "iterator": "cpp"
->>>>>>> Stashed changes
   }
 }
