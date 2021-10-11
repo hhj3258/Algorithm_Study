@@ -24,6 +24,7 @@
     "algorithm": "cpp",
     "limits": "cpp",
     "set": "cpp",
-    "iterator": "cpp"
+    "iterator": "cpp",
+    "chrono": "cpp"
   }
 }
