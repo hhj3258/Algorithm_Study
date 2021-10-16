@@ -21,20 +21,23 @@ void Solve(vector<int> &nums)
 
     int left = 0;
     int right = N - 1;
-    vector<T> answer;
+    int answer[2];
+    long long min_v = LLONG_MAX;
+
     while (left < right)
     {
         long long sum = nums[left] + nums[right];
-        T t;
-        t.left = left;
-        t.right = right;
-        t.sum = sum;
-        answer.push_back(t);
+
+        if (abs(sum) < abs(min_v))
+        {
+            answer[0] = nums[left];
+            answer[1] = nums[right];
+            min_v = sum;
+        }
 
         if (sum == 0)
         {
-            cout << nums[left] << ' ' << nums[right] << '\n';
-            return;
+            break;
         }
         else if (sum > 0)
         {
@@ -46,9 +49,7 @@ void Solve(vector<int> &nums)
         }
     }
 
-    sort(answer.begin(), answer.end(), cmp);
-
-    cout << nums[answer[0].left] << ' ' << nums[answer[0].right];
+    cout << answer[0] << ' ' << answer[1];
 }
 
 int main()
