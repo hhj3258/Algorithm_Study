@@ -3,18 +3,6 @@ using namespace std;
 
 int N;
 
-struct T
-{
-    long long sum = 0;
-    int left = 0;
-    int right = 0;
-};
-
-bool cmp(T a, T b)
-{
-    return abs(a.sum) < abs(b.sum);
-}
-
 void Solve(vector<int> &nums)
 {
     sort(nums.begin(), nums.end());
