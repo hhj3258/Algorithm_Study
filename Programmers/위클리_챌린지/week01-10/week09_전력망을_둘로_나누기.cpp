@@ -2,12 +2,12 @@
 using namespace std;
 #define MAX 101
 
-void ADJ(vector<vector<int>> &adj, vector<vector<int>> wires, int del_v)
+void ADJ(vector<vector<int>> &adj, vector<vector<int>> wires, int del_wire)
 {
     int v1, v2;
     for (int i = 0; i < wires.size(); i++)
     {
-        if (i == del_v)
+        if (i == del_wire)
             continue;
 
         v1 = wires[i][0];
@@ -21,7 +21,7 @@ void ADJ(vector<vector<int>> &adj, vector<vector<int>> wires, int del_v)
 bool visited[MAX];
 int cnt = 0;
 
-void dfs(vector<vector<int>> adj, int v)
+void DFS(vector<vector<int>> adj, int v)
 {
     cnt++;
     visited[v] = true;
@@ -31,7 +31,7 @@ void dfs(vector<vector<int>> adj, int v)
         int next = adj[v][i];
 
         if (visited[next] == 0)
-            dfs(adj, next);
+            DFS(adj, next);
     }
 }
 
@@ -49,15 +49,17 @@ int solution(int n, vector<vector<int>> wires)
 
         for (int j = 1; j < adj.size(); j++)
         {
-            dfs(adj, j);
+            DFS(adj, j);
 
-            for (int k = 0; k < MAX; k++)
-                visited[k] = false;
+            memset(visited, false, sizeof(visited));
 
             min_v = min(min_v, cnt);
             max_v = max(max_v, cnt);
 
             cnt = 0;
+
+            if (min_v != max_v)
+                break;
         }
 
         answer = min(answer, max_v - min_v);
@@ -70,5 +72,5 @@ int main()
 {
     int n = 9;
     vector<vector<int>> wires = {{1, 3}, {2, 3}, {3, 4}, {4, 5}, {4, 6}, {4, 7}, {7, 8}, {7, 9}};
-    solution(n, wires);
+    cout << solution(n, wires);
 }
