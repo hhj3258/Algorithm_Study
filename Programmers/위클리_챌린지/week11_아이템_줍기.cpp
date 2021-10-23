@@ -4,7 +4,7 @@
 #include <queue>
 using namespace std;
 
-// µø º≠ ≥≤ ∫œ
+// Îèô ÏÑú ÎÇ® Î∂Å
 int dy[] = {0, 0, 1, -1};
 int dx[] = {1, -1, 0, 0};
 
