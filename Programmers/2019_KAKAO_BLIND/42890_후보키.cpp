@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <set>
 #include <string>
@@ -6,11 +6,11 @@ using namespace std;
 
 bool check(vector<int> answer, int subset)
 {
-    //ÃÖ¼Ò¼º °Ë»ç
-    //Áö±İ±îÁö µé¾î¿Â answer°¡ À¯ÀÏ¼º °Ë»ç¸¦ Åë°úÇÑ subsetÀÇ ºÎºĞÁıÇÕÀÎÁö È®ÀÎ
+    //ìµœì†Œì„± ê²€ì‚¬
+    //ì§€ê¸ˆê¹Œì§€ ë“¤ì–´ì˜¨ answerê°€ ìœ ì¼ì„± ê²€ì‚¬ë¥¼ í†µê³¼í•œ subsetì˜ ë¶€ë¶„ì§‘í•©ì¸ì§€ í™•ì¸
     for (int i = 0; i < answer.size(); i++)
     {
-        //ºÎºĞÁıÇÕÀÌ¶ó¸é ÃÖ¼Ò¼º °Ë»ç ½ÇÆĞ
+        //ë¶€ë¶„ì§‘í•©ì´ë¼ë©´ ìµœì†Œì„± ê²€ì‚¬ ì‹¤íŒ¨
         if ((answer[i] & subset) == answer[i])
             return false;
     }
@@ -21,12 +21,12 @@ bool check(vector<int> answer, int subset)
 int solution(vector<vector<string>> relation)
 {
     vector<int> answer;
-    //¿­¿¡¼­ÀÇ ºÎºĞÁıÇÕÀÇ °æ¿ìÀÇ ¼ö = 1 << relation[0].size()
+    //ì—´ì—ì„œì˜ ë¶€ë¶„ì§‘í•©ì˜ ê²½ìš°ì˜ ìˆ˜ = 1 << relation[0].size()
     for (int i = 1; i < (1 << relation[0].size()); i++)
     {
         set<string> mySet;
-        //À¯ÀÏ¼º °Ë»ç
-        //¸ğµç ÇàÀ» µ¹¸ç °Ë»ç
+        //ìœ ì¼ì„± ê²€ì‚¬
+        //ëª¨ë“  í–‰ì„ ëŒë©° ê²€ì‚¬
         for (int j = 0; j < relation.size(); j++)
         {
             string temp = "";
@@ -42,12 +42,12 @@ int solution(vector<vector<string>> relation)
             mySet.insert(temp);
         }
 
-        //À¯ÀÏ¼º °Ë»ç¸¦ Åë°úÇß´Ù¸é
+        //ìœ ì¼ì„± ê²€ì‚¬ë¥¼ í†µê³¼í–ˆë‹¤ë©´
         if (mySet.size() == relation.size())
         {
-            //ÃÖ¼Ò¼º °Ë»ç¸¦ Åë°úÇß´Ù¸é
+            //ìµœì†Œì„± ê²€ì‚¬ë¥¼ í†µê³¼í–ˆë‹¤ë©´
             if (check(answer, i))
-                //answer¸¦ ÇÏ³ª ´Ã·ÁÁÜ
+                //answerë¥¼ í•˜ë‚˜ ëŠ˜ë ¤ì¤Œ
                 answer.push_back(i);
         }
     }

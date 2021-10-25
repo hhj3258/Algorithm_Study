@@ -1,11 +1,11 @@
-#include <stdio.h>
+ï»¿#include <stdio.h>
 
 int main()
 {
     int T, n;
     int count[10001] = {
         0,
-    }; //¼ıÀÚÀÇ ÃÖ´ë°ª¸¸Å­ ÇÒ´ç
+    }; //ìˆ«ìì˜ ìµœëŒ€ê°’ë§Œí¼ í• ë‹¹
 
     scanf("%d", &T);
 

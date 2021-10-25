@@ -1,4 +1,4 @@
-//¹éÁØ 10757 : Å« ¼ö A+B
+ï»¿//ë°±ì¤€ 10757 : í° ìˆ˜ A+B
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,21 +9,21 @@ int main()
     vector<char> vec_in_num1, vec_in_num2;
     string str_in_num1, str_in_num2;
 
-    // µÎ°¡Áö ÀÎÇ²À» ' 'À» ±âÁØÀ¸·Î Àß¶ó¼­ str·Î ¹Ş¾ÆÁÜ
+    // ë‘ê°€ì§€ ì¸í’‹ì„ ' 'ì„ ê¸°ì¤€ìœ¼ë¡œ ì˜ë¼ì„œ strë¡œ ë°›ì•„ì¤Œ
     getline(cin, str_in_num1, ' ');
     getline(cin, str_in_num2);
 
-    //¹Ş¾ÆÁØ str ÀÎÇ²ÀÇ °¢ ±æÀÌ¸¦ ÀúÀå
+    //ë°›ì•„ì¤€ str ì¸í’‹ì˜ ê° ê¸¸ì´ë¥¼ ì €ì¥
     int str1_size = str_in_num1.size();
     int str2_size = str_in_num2.size();
 
-    //ÀÔ·Â°ªÀÇ º¤ÅÍ ÄÄÆ÷³ÍÆ®È­
+    //ì…ë ¥ê°’ì˜ ë²¡í„° ì»´í¬ë„ŒíŠ¸í™”
     for (int i = 0; i < str1_size; i++)
         vec_in_num1.push_back(str_in_num1[i]);
     for (int i = 0; i < str2_size; i++)
         vec_in_num2.push_back(str_in_num2[i]);
 
-    //long_length = 2°¡Áö ÀÎÇ² Áß ±ä °ÍÀ» ÀúÀå
+    //long_length = 2ê°€ì§€ ì¸í’‹ ì¤‘ ê¸´ ê²ƒì„ ì €ì¥
     int long_length = 0;
     if (str1_size > str2_size)
         long_length = str1_size;
@@ -31,10 +31,10 @@ int main()
         long_length = str2_size;
 
     vector<char>::iterator it;
-    //this_length = 2°¡Áö ÀÎÇ² Áß ÂªÀº °ÍÀ» ÀúÀå
+    //this_length = 2ê°€ì§€ ì¸í’‹ ì¤‘ ì§§ì€ ê²ƒì„ ì €ì¥
     int this_length = 0;
 
-    //2°¡Áö ÀÎÇ²ÀÇ ÀüÃ¼ ±æÀÌ¸¦ temp °ª 0À» »ğÀÔÇÏ¿© long_length¿¡ ¸ÂÃã
+    //2ê°€ì§€ ì¸í’‹ì˜ ì „ì²´ ê¸¸ì´ë¥¼ temp ê°’ 0ì„ ì‚½ì…í•˜ì—¬ long_lengthì— ë§ì¶¤
     if (long_length > str1_size)
     {
         this_length = long_length - str1_size;
@@ -57,7 +57,7 @@ int main()
     int* p_result_arr = new int[long_length];
     int int_temp1, int_temp2;
 
-    //char º¤ÅÍ¸¦ int·Î Çüº¯È¯ÇÏ°í µÎ ÀÎÇ² °ªÀ» ´õÇØÁÜ
+    //char ë²¡í„°ë¥¼ intë¡œ í˜•ë³€í™˜í•˜ê³  ë‘ ì¸í’‹ ê°’ì„ ë”í•´ì¤Œ
     //p_result_arr[i] = vec_in_num[i] + vec_in_num2[i]
     for (int i = 0; i < long_length; i++)
     {
@@ -69,8 +69,8 @@ int main()
         cout << p_result_arr[i] <<endl<<endl;
     }
 
-    //p_result_arr ¹è¿­ ÀÎµ¦½º Áß 10 ÀÌ»óÀÎ ÀÎµ¦½ºÀÇ °æ¿ì ¹İ¿Ã¸²
-    //¹è¿­ 0¹øÂ° ÀÎµ¦½ºÀÇ °æ¿ì ¹İ¿Ã¸² ¿¬»êÀ» ÇØÁÙ ÇÊ¿ä°¡ ¾øÀ½
+    //p_result_arr ë°°ì—´ ì¸ë±ìŠ¤ ì¤‘ 10 ì´ìƒì¸ ì¸ë±ìŠ¤ì˜ ê²½ìš° ë°˜ì˜¬ë¦¼
+    //ë°°ì—´ 0ë²ˆì§¸ ì¸ë±ìŠ¤ì˜ ê²½ìš° ë°˜ì˜¬ë¦¼ ì—°ì‚°ì„ í•´ì¤„ í•„ìš”ê°€ ì—†ìŒ
     for (int i = long_length - 1; i > 0; i--)
     {
         if (p_result_arr[i] > 9)
@@ -80,7 +80,7 @@ int main()
         }
     }
 
-    //ÀüÃ¼ ¼ıÀÚ ±æÀÌÀÎ long_length¸¸Å­ Ãâ·Â
+    //ì „ì²´ ìˆ«ì ê¸¸ì´ì¸ long_lengthë§Œí¼ ì¶œë ¥
     for (int i = 0; i < long_length; i++)
         cout << p_result_arr[i];
 

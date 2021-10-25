@@ -1,11 +1,11 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int N;
 
 void Solve()
 {
-    // ¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
+    // ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´
     vector<bool> isPrime(N + 1, true);
     isPrime[0] = false;
     isPrime[1] = false;
@@ -16,7 +16,7 @@ void Solve()
                 isPrime[j] = false;
     }
 
-    // primes ¹è¿­¿¡ ¼Ò¼ö Á¤¸®
+    // primes ë°°ì—´ì— ì†Œìˆ˜ ì •ë¦¬
     vector<int> primes;
     for (int i = 0; i < isPrime.size(); i++)
     {
@@ -24,14 +24,14 @@ void Solve()
             primes.push_back(i);
     }
 
-    // ºÎºĞÇÕ
+    // ë¶€ë¶„í•©
     vector<int> sums(primes.size() + 1);
     for (int i = 0; i < sums.size() - 1; i++)
     {
         sums[i + 1] = sums[i] + primes[i];
     }
 
-    // ÅõÆ÷ÀÎÅÍ
+    // íˆ¬í¬ì¸í„°
     int left = sums.size() - 2;
     int right = sums.size() - 1;
     int cnt = 0;

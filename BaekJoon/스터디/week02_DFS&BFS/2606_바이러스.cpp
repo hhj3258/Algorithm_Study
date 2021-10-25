@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int com_cnt = 0;
@@ -8,7 +8,7 @@ void Solve(vector<vector<int>> &map)
     vector<int> visited(com_cnt + 1, false);
     queue<int> q;
 
-    // ½ÃÀÛ Á¤Á¡Àº ¹«Á¶°Ç 1¹ø ÄÄÇ»ÅÍ
+    // ì‹œì‘ ì •ì ì€ ë¬´ì¡°ê±´ 1ë²ˆ ì»´í“¨í„°
     q.push(1);
     visited[1] = true;
 
@@ -33,7 +33,7 @@ void Solve(vector<vector<int>> &map)
         }
     }
 
-    // 1¹ø ÄÄÇ»ÅÍ´Â Á¦¿ÜÇÏ°í Ãâ·Â
+    // 1ë²ˆ ì»´í“¨í„°ëŠ” ì œì™¸í•˜ê³  ì¶œë ¥
     cout << cnt - 1;
 }
 
@@ -41,7 +41,7 @@ int main()
 {
     cin >> com_cnt;
 
-    int lines = 0; //°£¼±
+    int lines = 0; //ê°„ì„ 
     cin >> lines;
 
     vector<vector<int>> map(com_cnt + 1, vector<int>(com_cnt + 1));

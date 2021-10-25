@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -16,17 +16,17 @@ vector<int> solution(vector<int> answers)
 
     for (int i = 0; i < answers.size(); i++)
     {
-        //1¹øÂ° ¼öÆ÷ÀÚ
+        //1ë²ˆì§¸ ìˆ˜í¬ìž
         if (mans_cnt[0] > man1.size() - 1)
             mans_cnt[0] = 0;
         mans[0][i] = man1[mans_cnt[0]++];
 
-        //2¹øÂ° ¼öÆ÷ÀÚ
+        //2ë²ˆì§¸ ìˆ˜í¬ìž
         if (mans_cnt[1] > man2.size() - 1)
             mans_cnt[1] = 0;
         mans[1][i] = man2[mans_cnt[1]++];
 
-        //3¹øÂ° ¼öÆ÷ÀÚ
+        //3ë²ˆì§¸ ìˆ˜í¬ìž
         if (mans_cnt[2] > man3.size() - 1)
             mans_cnt[2] = 0;
         mans[2][i] = man3[mans_cnt[2]++];

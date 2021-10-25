@@ -1,11 +1,11 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 
 using namespace std;
 
 int n, m;
 
-//¼ø¿­
+//ìˆœì—´
 void DFS_1(int cnt, vector<int> nums, vector<bool> visited)
 {
     if (cnt == m)
@@ -28,7 +28,7 @@ void DFS_1(int cnt, vector<int> nums, vector<bool> visited)
     }
 }
 
-//Á¶ÇÕ
+//ì¡°í•©
 void DFS_2(int cnt, int num, vector<int> nums)
 {
     if (cnt == m)
@@ -46,7 +46,7 @@ void DFS_2(int cnt, int num, vector<int> nums)
     }
 }
 
-//Áßº¹¼ø¿­
+//ì¤‘ë³µìˆœì—´
 void DFS_3(int cnt, vector<int> nums)
 {
     if (cnt == m)
@@ -64,7 +64,7 @@ void DFS_3(int cnt, vector<int> nums)
     }
 }
 
-//Áßº¹Á¶ÇÕ
+//ì¤‘ë³µì¡°í•©
 void DFS_4(int cnt, int num, vector<int> nums)
 {
     if (cnt == m)

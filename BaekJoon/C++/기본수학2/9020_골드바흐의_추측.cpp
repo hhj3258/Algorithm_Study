@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 void PrimeChk(int in_num, bool* p_chk);
@@ -11,7 +11,7 @@ int main()
     int MAX = 0;
     int* in_num = new int[t_case];
 
-    for (int i = 0; i < t_case; i++) //Å×½ºÆ® ÄÉÀÌ½º¸¸Å­ ÀÔ·Â
+    for (int i = 0; i < t_case; i++) //í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ë§Œí¼ ì…ë ¥
     {
         cin >> in_num[i];
         if (in_num[i] > MAX)
@@ -20,7 +20,7 @@ int main()
 
     bool* p_chk = new bool[MAX];
 
-    PrimeChk(MAX, p_chk); //¼Ò¼ö Ã¼Å©´Â ÄÉÀÌ½ºÁß °¡Àå Å« ¼ö·Î¸¸ ÇÑ ¹ø¸¸ µ¹¸®¸é µÊ
+    PrimeChk(MAX, p_chk); //ì†Œìˆ˜ ì²´í¬ëŠ” ì¼€ì´ìŠ¤ì¤‘ ê°€ì¥ í° ìˆ˜ë¡œë§Œ í•œ ë²ˆë§Œ ëŒë¦¬ë©´ ë¨
 
     for (int i = 0; i < t_case; i++)
     {
@@ -40,7 +40,7 @@ int main()
     return 0;
 }
 
-void PrimeChk(int in_num, bool* p_chk) //¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
+void PrimeChk(int in_num, bool* p_chk) //ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´
 {
     for (int i = 0; i <= in_num; i++)
         p_chk[i] = 1; //true
@@ -48,12 +48,12 @@ void PrimeChk(int in_num, bool* p_chk) //¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼
     p_chk[0] = 0;
     p_chk[1] = 0;
 
-    for (int i = 2; i <= in_num; i++) // ¹è¿­ Ä«¿îÆ®
+    for (int i = 2; i <= in_num; i++) // ë°°ì—´ ì¹´ìš´íŠ¸
     {
         if (i * i >= in_num) // p^2 > n
             break;
 
-        for (int j = 2; i * j <= in_num; j++) // °öÇØÁú ¼ıÀÚ
+        for (int j = 2; i * j <= in_num; j++) // ê³±í•´ì§ˆ ìˆ«ì
             p_chk[i * j] = false;
     }
 }

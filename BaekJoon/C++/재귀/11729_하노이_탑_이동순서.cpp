@@ -1,4 +1,4 @@
-#include <cstdio>
+﻿#include <cstdio>
 using namespace std;
 
 void Hanoi(int n, int from, int by, int to)

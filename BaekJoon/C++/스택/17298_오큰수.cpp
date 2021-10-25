@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int N;
@@ -7,21 +7,21 @@ void Solve(vector<int> &A)
 {
     stack<int> myStack;
 
-    // ¼ö¿­ AÀÇ Å©±â¸¸Å­ ¹İº¹
+    // ìˆ˜ì—´ Aì˜ í¬ê¸°ë§Œí¼ ë°˜ë³µ
     for (int i = 0; i < N; i++)
     {
-        // ½ºÅÃÀÌ ºñ¾îÀÖÁö ¾Ê°í, A[myStack.top()]ÀÌ A[i]º¸´Ù ÀÛÀ» ¶§
+        // ìŠ¤íƒì´ ë¹„ì–´ìˆì§€ ì•Šê³ , A[myStack.top()]ì´ A[i]ë³´ë‹¤ ì‘ì„ ë•Œ
         while (!myStack.empty() && A[myStack.top()] < A[i])
         {
             A[myStack.top()] = A[i];
             myStack.pop();
         }
 
-        // ±× ¿ÜÀÇ °æ¿ì¿¡´Â ÀÎµ¦½º i ¸¦ ½ºÅÃ¿¡ push
+        // ê·¸ ì™¸ì˜ ê²½ìš°ì—ëŠ” ì¸ë±ìŠ¤ i ë¥¼ ìŠ¤íƒì— push
         myStack.push(i);
     }
 
-    // ¿ÀÅ«¼ö¸¦ Ã£Áö ¸øÇÑ ¿ø¼Ò´Â -1·Î º¯°æ
+    // ì˜¤í°ìˆ˜ë¥¼ ì°¾ì§€ ëª»í•œ ì›ì†ŒëŠ” -1ë¡œ ë³€ê²½
     while (!myStack.empty())
     {
         A[myStack.top()] = -1;

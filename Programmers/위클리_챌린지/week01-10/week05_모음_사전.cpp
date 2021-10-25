@@ -1,4 +1,4 @@
-#include <string>
+ï»¿#include <string>
 #include <vector>
 #include <iostream>
 #include <set>
@@ -8,7 +8,7 @@ set<string> mySet;
 vector<char> alp = {'A', 'E', 'I', 'O', 'U'};
 vector<char> temp(5);
 
-//Áßº¹¼ø¿­
+//ì¤‘ë³µìˆœì—´
 void DFS_3(int cnt, int m)
 {
     if (cnt == m)

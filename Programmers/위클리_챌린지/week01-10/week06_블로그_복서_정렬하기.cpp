@@ -1,31 +1,31 @@
-#include <string>
+ï»¿#include <string>
 #include <vector>
 #include <iostream>
 #include <algorithm>
 using namespace std;
 
-//Á¤·Ä Á¶°Ç
+//ì •ë ¬ ì¡°ê±´
 bool cmp(vector<float> a, vector<float> b)
 {
-    // ½Â·üÀÌ °°´Ù¸é -> 2¹ø Á¶°Ç
+    // ìŠ¹ë¥ ì´ ê°™ë‹¤ë©´ -> 2ë²ˆ ì¡°ê±´
     if (a[0] == b[0])
     {
-        // ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö°¡ °°´Ù¸é -> 3¹ø Á¶°Ç
+        // ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜ê°€ ê°™ë‹¤ë©´ -> 3ë²ˆ ì¡°ê±´
         if (a[1] == b[1])
         {
-            // ¸ö¹«°Ô°¡ °°´Ù¸é -> 4¹ø Á¶°Ç
+            // ëª¸ë¬´ê²Œê°€ ê°™ë‹¤ë©´ -> 4ë²ˆ ì¡°ê±´
             if (a[2] == b[2])
-                // 4. ¹øÈ£°¡ ÀÛÀº ¼ø (¹øÈ£´Â °°Àº °æ¿ì°¡ ¾ø´Ù)
+                // 4. ë²ˆí˜¸ê°€ ì‘ì€ ìˆœ (ë²ˆí˜¸ëŠ” ê°™ì€ ê²½ìš°ê°€ ì—†ë‹¤)
                 return a[3] < b[3];
-            // 3. ¸ö¹«°Ô°¡ Å« ¼ø
+            // 3. ëª¸ë¬´ê²Œê°€ í° ìˆœ
             else
                 return a[2] > b[2];
         }
-        // 2. 1ÀÌ °°´Ù¸é -> ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö
+        // 2. 1ì´ ê°™ë‹¤ë©´ -> ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜
         else
             return a[1] > b[1];
     }
-    // 1. ½Â·ü
+    // 1. ìŠ¹ë¥ 
     else
         return a[0] > b[0];
 }
@@ -34,53 +34,53 @@ vector<int> solution(vector<int> weights, vector<string> head2head)
 {
     vector<int> answer(weights.size());
 
-    // Çà ±æÀÌ: inputÀ¸·Î ¹Ş¾ÆÁú weights.size() -> º¹¼­ ¼ö
-    // ¿­: [½Â·ü, ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö, ¸ö¹«°Ô, ¹øÈ£]
+    // í–‰ ê¸¸ì´: inputìœ¼ë¡œ ë°›ì•„ì§ˆ weights.size() -> ë³µì„œ ìˆ˜
+    // ì—´: [ìŠ¹ë¥ , ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜, ëª¸ë¬´ê²Œ, ë²ˆí˜¸]
     vector<vector<float>> all(weights.size(), vector<float>(4));
 
-    //º¹¼­ ¼ö¸¸Å­ ¹İº¹
+    //ë³µì„œ ìˆ˜ë§Œí¼ ë°˜ë³µ
     for (int i = 0; i < all.size(); i++)
     {
         float lose = 0;
         float win = 0;
-        int bigger_win = 0; //ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö
+        int bigger_win = 0; //ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜
 
-        //°¢ º¹¼­ÀÇ head2head ¸¸Å­ ¹İº¹
+        //ê° ë³µì„œì˜ head2head ë§Œí¼ ë°˜ë³µ
         for (int k = 0; k < head2head[i].size(); k++)
         {
             if (head2head[i][k] == 'W')
             {
-                //ÀÌ±ä È½¼ö + 1
+                //ì´ê¸´ íšŸìˆ˜ + 1
                 win++;
 
-                //ex) head2head[i].size()=4°í, i=0ÀÌ¶ó¸é
+                //ex) head2head[i].size()=4ê³ , i=0ì´ë¼ë©´
                 //ex) weights[0~4] > weights[0]
                 if (weights[k] > weights[i])
-                    //ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö + 1
+                    //ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜ + 1
                     bigger_win++;
             }
 
             if (head2head[i][k] == 'L')
-                //Áø È½¼ö + 1
+                //ì§„ íšŸìˆ˜ + 1
                 lose++;
         }
 
-        //°æ±â ¼ö°¡ 0º¸´Ù Å©´Ù¸é all[i][0] = ½Â·ü = ÀÌ±ä È½¼ö/(ÀÌ±ä È½¼ö + Áø È½¼ö)
-        //°æ±â ¼ö°¡ 0°ú °°´Ù¸é all[i][0] = ½Â·ü = 0% -> ¹®Á¦ÀÇ 1¹ø Á¶°Ç¿¡¼­ ¸í½Ã
+        //ê²½ê¸° ìˆ˜ê°€ 0ë³´ë‹¤ í¬ë‹¤ë©´ all[i][0] = ìŠ¹ë¥  = ì´ê¸´ íšŸìˆ˜/(ì´ê¸´ íšŸìˆ˜ + ì§„ íšŸìˆ˜)
+        //ê²½ê¸° ìˆ˜ê°€ 0ê³¼ ê°™ë‹¤ë©´ all[i][0] = ìŠ¹ë¥  = 0% -> ë¬¸ì œì˜ 1ë²ˆ ì¡°ê±´ì—ì„œ ëª…ì‹œ
         all[i][0] = (win + lose) > 0 ? win / (win + lose) : 0;
 
-        //all[i][1] = ÀÚ½Åº¸´Ù ¹«°Å¿î »ç¶÷ ÀÌ±ä È½¼ö
+        //all[i][1] = ìì‹ ë³´ë‹¤ ë¬´ê±°ìš´ ì‚¬ëŒ ì´ê¸´ íšŸìˆ˜
         all[i][1] = bigger_win;
 
-        //all[i][2] = ¸ö¹«°Ô
+        //all[i][2] = ëª¸ë¬´ê²Œ
         all[i][2] = weights[i];
 
-        //all[i][3] = ¼±¼ö ¹øÈ£
+        //all[i][3] = ì„ ìˆ˜ ë²ˆí˜¸
         all[i][3] = i + 1;
     }
 
-    cout << "[Á¤·Ä Àü]\n";
-    cout << "½Â·ü      BigWin  ¸ö¹«°Ô  ¹øÈ£\n";
+    cout << "[ì •ë ¬ ì „]\n";
+    cout << "ìŠ¹ë¥       BigWin  ëª¸ë¬´ê²Œ  ë²ˆí˜¸\n";
     for (int i = 0; i < all.size(); i++)
     {
         for (int j = 0; j < all[i].size(); j++)
@@ -89,11 +89,11 @@ vector<int> solution(vector<int> weights, vector<string> head2head)
     }
     cout << endl;
 
-    // ¹®Á¦ÀÇ Á¤·Ä Á¶°Ç¿¡ µû¶ó Á¤·Ä
+    // ë¬¸ì œì˜ ì •ë ¬ ì¡°ê±´ì— ë”°ë¼ ì •ë ¬
     sort(all.begin(), all.end(), cmp);
 
-    cout << "[Á¤·Ä ÈÄ]\n";
-    cout << "½Â·ü      BigWin  ¸ö¹«°Ô  ¹øÈ£\n";
+    cout << "[ì •ë ¬ í›„]\n";
+    cout << "ìŠ¹ë¥       BigWin  ëª¸ë¬´ê²Œ  ë²ˆí˜¸\n";
     for (int i = 0; i < all.size(); i++)
     {
         for (int j = 0; j < all[i].size(); j++)
@@ -102,7 +102,7 @@ vector<int> solution(vector<int> weights, vector<string> head2head)
     }
     cout << endl;
 
-    //return °ª = ¼±¼ö ¹øÈ£ = all[i][3]
+    //return ê°’ = ì„ ìˆ˜ ë²ˆí˜¸ = all[i][3]
     for (int i = 0; i < answer.size(); i++)
         answer[i] = all[i][3];
 

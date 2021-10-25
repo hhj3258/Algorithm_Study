@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -10,7 +10,7 @@ int main()
     cin >> N >> S;
 
     vector<int> nums(N);
-    vector<int> sums(N + 1); // ´©Àû ÇÕ
+    vector<int> sums(N + 1); // ëˆ„ì  í•©
     for (int i = 0; i < N; i++)
     {
         cin >> nums[i];

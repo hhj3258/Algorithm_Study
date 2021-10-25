@@ -1,8 +1,8 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
-// int n ==> n! À» °¡¸®Å´
-// n! ÀÇ 2ÀÇ ½Â¼öÀÇ °³¼ö¸¦ ±¸ÇÔ
+// int n ==> n! ì„ ê°€ë¦¬í‚´
+// n! ì˜ 2ì˜ ìŠ¹ìˆ˜ì˜ ê°œìˆ˜ë¥¼ êµ¬í•¨
 long CountPowTwo(int n)
 {
     long cnt = 0;
@@ -32,7 +32,7 @@ void Solve(int n, int m)
     long pow2_cnt = CountPowTwo(n) - CountPowTwo(n - m) - CountPowTwo(m);
     long pow5_cnt = CountPowFive(n) - CountPowFive(n - m) - CountPowFive(m);
 
-    // 2^a ¿Í 5^b ¿¡¼­ a,b Áß ÀÛÀº °ªÀ» Ãâ·Â(2*5ÀÇ Â¦ÀÇ °¹¼ö)
+    // 2^a ì™€ 5^b ì—ì„œ a,b ì¤‘ ì‘ì€ ê°’ì„ ì¶œë ¥(2*5ì˜ ì§ì˜ ê°¯ìˆ˜)
     cout << min(pow2_cnt, pow5_cnt);
 }
 

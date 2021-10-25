@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -11,21 +11,21 @@ void Solve(vector<int> A)
 
     for (int i = 0; i < N; i++)
     {
-        //³Ö°íÀÚÇÏ´Â °ªÀÌ vecÀÇ ¸¶Áö¸· °ªº¸´Ù Å©´Ù¸é ³Ö¾îÁØ´Ù.
+        //ë„£ê³ ìží•˜ëŠ” ê°’ì´ vecì˜ ë§ˆì§€ë§‰ ê°’ë³´ë‹¤ í¬ë‹¤ë©´ ë„£ì–´ì¤€ë‹¤.
         if (A[i] > vec.back())
             vec.push_back(A[i]);
-        //³Ö°íÀÚÇÏ´Â °ªÀÌ vecÀÇ ¸¶Áö¸· °ªº¸´Ù ÀÛ°Å³ª °°´Ù¸é
+        //ë„£ê³ ìží•˜ëŠ” ê°’ì´ vecì˜ ë§ˆì§€ë§‰ ê°’ë³´ë‹¤ ìž‘ê±°ë‚˜ ê°™ë‹¤ë©´
         else
         {
-            //temp¸¦ ±âÁ¸ vec¾È¿¡¼­ Ã£¾Æº»´Ù.
-            //temp°¡ ÀÖ´Ù¸é ±× iter¸¦ µ¹·ÁÁÙ °ÍÀÌ°í, ¾ø´Ù¸é tempº¸´Ù Å« ¿ø¼ÒÁß °¡Àå Ã³À½ ¿À´Â iter¸¦ ¹ÝÈ¯ÇØÁØ´Ù.
+            //tempë¥¼ ê¸°ì¡´ vecì•ˆì—ì„œ ì°¾ì•„ë³¸ë‹¤.
+            //tempê°€ ìžˆë‹¤ë©´ ê·¸ iterë¥¼ ëŒë ¤ì¤„ ê²ƒì´ê³ , ì—†ë‹¤ë©´ tempë³´ë‹¤ í° ì›ì†Œì¤‘ ê°€ìž¥ ì²˜ìŒ ì˜¤ëŠ” iterë¥¼ ë°˜í™˜í•´ì¤€ë‹¤.
             auto low = lower_bound(vec.begin(), vec.end(), A[i]);
-            //ÇØ´ç iter¿¡ ÇØ´çµÇ´Â vec °ªÀ» º¯°æÇØÁØ´Ù.
+            //í•´ë‹¹ iterì— í•´ë‹¹ë˜ëŠ” vec ê°’ì„ ë³€ê²½í•´ì¤€ë‹¤.
             *low = A[i];
         }
     }
 
-    //ÃÊ±â°ªÀ¸·Î ³Ö¾îÁØ 0À» Á¦¿ÜÇÑ vecÀÇ ±æÀÌ°¡ °¡Àå ±ä Áõ°¡ÇÏ´Â ºÎºÐ ¼ö¿­ÀÇ ±æÀÌ°¡ µÈ´Ù.
+    //ì´ˆê¸°ê°’ìœ¼ë¡œ ë„£ì–´ì¤€ 0ì„ ì œì™¸í•œ vecì˜ ê¸¸ì´ê°€ ê°€ìž¥ ê¸´ ì¦ê°€í•˜ëŠ” ë¶€ë¶„ ìˆ˜ì—´ì˜ ê¸¸ì´ê°€ ëœë‹¤.
     cout << vec.size() - 1 << endl;
 }
 

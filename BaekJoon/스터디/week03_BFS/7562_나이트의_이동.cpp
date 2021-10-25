@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int T, I;
@@ -45,16 +45,16 @@ int Solve(vector<vector<int>> &board)
 
 int main()
 {
-    cin >> T; // Å×½ºÆ® ÄÉÀÌ½º
+    cin >> T; // í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤
 
     vector<int> answer(T);
     for (int i = 0; i < T; i++)
     {
-        cin >> I; // º¸µå Å©±â
+        cin >> I; // ë³´ë“œ í¬ê¸°
         vector<vector<int>> board(I, vector<int>(I));
 
-        cin >> start.first >> start.second; // ½ÃÀÛ À§Ä¡
-        cin >> goal.first >> goal.second;   // °ñ À§Ä¡
+        cin >> start.first >> start.second; // ì‹œì‘ ìœ„ì¹˜
+        cin >> goal.first >> goal.second;   // ê³¨ ìœ„ì¹˜
 
         answer[i] = Solve(board);
     }

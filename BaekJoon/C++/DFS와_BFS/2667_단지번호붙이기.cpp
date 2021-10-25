@@ -1,9 +1,9 @@
-#include <bits/stdc++.h>
+Ôªø#include <bits/stdc++.h>
 using namespace std;
 
 int N;
 
-// µø º≠ ≥≤ ∫œ
+// Îèô ÏÑú ÎÇ® Î∂Å
 int dy[] = {0, 0, 1, -1};
 int dx[] = {1, -1, 0, 0};
 

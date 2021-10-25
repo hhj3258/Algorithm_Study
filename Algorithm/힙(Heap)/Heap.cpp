@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 
@@ -9,7 +9,7 @@ vector<int> heap_arr;
 int idx = 0;
 int result;
 
-// ÈüÀÇ »ğÀÔ ¸Ş¼Òµå
+// í™ì˜ ì‚½ì… ë©”ì†Œë“œ
 void Heap_push(int data, vector<int> &heap_arr)
 {
     if (heap_arr.size() == 0)

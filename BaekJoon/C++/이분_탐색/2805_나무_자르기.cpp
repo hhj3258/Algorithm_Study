@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
@@ -9,8 +9,8 @@ void Solve(vector<long long> tree)
 {
     sort(tree.begin(), tree.end());
 
-    long long left = 0;            //Àı´Ü±â ÃÖ¼Ò
-    long long right = tree.back(); //³ª¹« ÃÖ´ë±æÀÌ
+    long long left = 0;            //ì ˆë‹¨ê¸° ìµœì†Œ
+    long long right = tree.back(); //ë‚˜ë¬´ ìµœëŒ€ê¸¸ì´
 
     long long answer = 0;
     while (left <= right)

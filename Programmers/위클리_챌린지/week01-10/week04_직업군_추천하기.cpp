@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>
@@ -17,7 +17,7 @@ string FindHighScoreJob(vector<vector<string>> new_table, vector<string> languag
 
 string solution(vector<string> table, vector<string> languages, vector<int> preference)
 {
-    //Å×ÀÌºí Àç±¸¼º
+    //í…Œì´ë¸” ì¬êµ¬ì„±
     vector<vector<string>> new_table = TableOrganize(table);
 
     for (int i = 0; i < new_table.size(); i++)
@@ -29,38 +29,38 @@ string solution(vector<string> table, vector<string> languages, vector<int> pref
         cout << endl;
     }
 
-    //°¡Àå ³ôÀº Á¡¼ö¸¦ ¾òÀº Á÷¾÷±º Å½»ö
+    //ê°€ì¥ ë†’ì€ ì ìˆ˜ë¥¼ ì–»ì€ ì§ì—…êµ° íƒìƒ‰
     string answer = FindHighScoreJob(new_table, languages, preference);
 
     return answer;
 }
 
-//{SI, JAVA, JAVASCRIPT, SQL, PYTHON, C#}, ... °ø¹é ±âÁØÀ¸·Î ¿­À» Àß¶ó¼­ Àç±¸¼º
+//{SI, JAVA, JAVASCRIPT, SQL, PYTHON, C#}, ... ê³µë°± ê¸°ì¤€ìœ¼ë¡œ ì—´ì„ ì˜ë¼ì„œ ì¬êµ¬ì„±
 vector<vector<string>> TableOrganize(vector<string> table)
 {
-    //Àç±¸¼ºÇÒ Å×ÀÌºí ¿ø¼ÒµéÀ» ´ãÀ» 2Â÷¿ø ¹è¿­
+    //ì¬êµ¬ì„±í•  í…Œì´ë¸” ì›ì†Œë“¤ì„ ë‹´ì„ 2ì°¨ì› ë°°ì—´
     vector<vector<string>> new_table(5);
 
-    //table Çà ±æÀÌ¸¸Å­ ¹İº¹
+    //table í–‰ ê¸¸ì´ë§Œí¼ ë°˜ë³µ
     for (int i = 0; i < table.size(); i++)
     {
         string temp = "";
-        //table ¿­ ±æÀÌ¸¸Å­ ¹İº¹
+        //table ì—´ ê¸¸ì´ë§Œí¼ ë°˜ë³µ
         for (int j = 0; j < table[i].size(); j++)
         {
-            //table[i][j]°¡ °ø¹éÀÌ ¾Æ´Ï¶ó¸é
+            //table[i][j]ê°€ ê³µë°±ì´ ì•„ë‹ˆë¼ë©´
             if (table[i][j] != ' ')
-                //temp¿¡ table[i][j]¸¦ ´õÇØÁÜ
+                //tempì— table[i][j]ë¥¼ ë”í•´ì¤Œ
                 temp += table[i][j];
             else
             {
-                //table[i][j]°¡ °ø¹éÀÌ¶ó¸é »õ·Î¿î Å×ÀÌºí¿¡ temp¸¦ ³Ö¾îÁÖ°í
+                //table[i][j]ê°€ ê³µë°±ì´ë¼ë©´ ìƒˆë¡œìš´ í…Œì´ë¸”ì— tempë¥¼ ë„£ì–´ì£¼ê³ 
                 new_table[i].push_back(temp);
-                //temp¸¦ ºñ¿öÁÜ
+                //tempë¥¼ ë¹„ì›Œì¤Œ
                 temp = "";
             }
         }
-        //table[i]ÀÇ ¸¶Áö¸· ¿ø¼Ò°¡ °ø¹éÀÌ ¾Æ´Ï¹Ç·Î µû·Î 1Á¡Â¥¸® ¾ğ¾î¸¦ ³Ö¾îÁÜ
+        //table[i]ì˜ ë§ˆì§€ë§‰ ì›ì†Œê°€ ê³µë°±ì´ ì•„ë‹ˆë¯€ë¡œ ë”°ë¡œ 1ì ì§œë¦¬ ì–¸ì–´ë¥¼ ë„£ì–´ì¤Œ
         new_table[i].push_back(temp);
     }
 
@@ -71,11 +71,11 @@ string FindHighScoreJob(vector<vector<string>> new_table, vector<string> languag
 {
     vector<int> scores(5);
 
-    //Á¶»çÇÒ ¾ğ¾î¸¸Å­ ¹İº¹
+    //ì¡°ì‚¬í•  ì–¸ì–´ë§Œí¼ ë°˜ë³µ
     for (int l = 0; l < languages.size(); l++)
-        //5°³ Á÷¾÷±º¸¸Å­ ¹İº¹
+        //5ê°œ ì§ì—…êµ°ë§Œí¼ ë°˜ë³µ
         for (int i = 0; i < new_table.size(); i++)
-            //5°³ ¾ğ¾î Á¾·ù¸¸Å­ ¹İº¹
+            //5ê°œ ì–¸ì–´ ì¢…ë¥˜ë§Œí¼ ë°˜ë³µ
             for (int j = 1; j < new_table[i].size(); j++)
                 // ex1) new_table[0][4]==languages[0]
                 // ex1) PYTHON==PYTHON
@@ -83,17 +83,17 @@ string FindHighScoreJob(vector<vector<string>> new_table, vector<string> languag
                     // ex1) scores[0] += 7 * (6 - 4);
                     scores[i] += preference[l] * (6 - j);
 
-    //maxV = Á÷¾÷±ºº° Á¡¼ö Áß °¡Àå ³ôÀº Á¡¼ö
+    //maxV = ì§ì—…êµ°ë³„ ì ìˆ˜ ì¤‘ ê°€ì¥ ë†’ì€ ì ìˆ˜
     int maxV = *max_element(scores.begin(), scores.end());
 
     vector<string> temp;
-    //°¡Àå ³ôÀº Á¡¼ö°¡ 2°³ ÀÌ»óÀÏ ¼ö ÀÖÀ¸¹Ç·Î
-    //5°³ Á÷¾÷±º¸¸Å­ ¹İº¹ÇÏ¸ç maxV¿Í °°Àº scores[i] °ªÀÌ ÀÖ´Ù¸é temp¿¡ ÀúÀå
+    //ê°€ì¥ ë†’ì€ ì ìˆ˜ê°€ 2ê°œ ì´ìƒì¼ ìˆ˜ ìˆìœ¼ë¯€ë¡œ
+    //5ê°œ ì§ì—…êµ°ë§Œí¼ ë°˜ë³µí•˜ë©° maxVì™€ ê°™ì€ scores[i] ê°’ì´ ìˆë‹¤ë©´ tempì— ì €ì¥
     for (int i = 0; i < 5; i++)
         if (scores[i] == maxV)
             temp.push_back(new_table[i][0]);
 
-    //temp¿¡ ÀúÀåµÈ °ª Áß °¡Àå ÀÛÀº °ª(»çÀü ¼øÀ¸·Î °¡Àå ºü¸¥ Á÷¾÷±º) return
+    //tempì— ì €ì¥ëœ ê°’ ì¤‘ ê°€ì¥ ì‘ì€ ê°’(ì‚¬ì „ ìˆœìœ¼ë¡œ ê°€ì¥ ë¹ ë¥¸ ì§ì—…êµ°) return
     return *min_element(temp.begin(), temp.end());
 }
 

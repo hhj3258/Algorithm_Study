@@ -1,4 +1,4 @@
-#include <string>
+ï»¿#include <string>
 #include <vector>
 #include <unordered_map>
 #include <sstream>
@@ -11,7 +11,7 @@ vector<int> List[4][3][3][3];
 
 vector<int> solution(vector<string> info, vector<string> query)
 {
-    m["-"] = 0; //query¿¡¼­¸¸ ¾²ÀÓ
+    m["-"] = 0; //queryì—ì„œë§Œ ì“°ì„
 
     m["cpp"] = 1;
     m["java"] = 2;
@@ -29,14 +29,14 @@ vector<int> solution(vector<string> info, vector<string> query)
     for (auto str : info)
     {
         stringstream ss(str);
-        string a, b, c, d; // ¾ğ¾î, Á÷±º, °æ·Â, ¼Ò¿ïÇªµå
+        string a, b, c, d; // ì–¸ì–´, ì§êµ°, ê²½ë ¥, ì†Œìš¸í‘¸ë“œ
         int score;
         //java backend junior pizza 150
         ss >> a >> b >> c >> d >> score;
         //arr[4] = {2, 1, 1, 2};
         int arr[4] = {m[a], m[b], m[c], m[d]};
 
-        //°øÁıÇÕµµ ±¸ÇÑ´Ù(¸ğµç Á¶°ÇÀÌ '-'ÀÎ °æ¿ì)
+        //ê³µì§‘í•©ë„ êµ¬í•œë‹¤(ëª¨ë“  ì¡°ê±´ì´ '-'ì¸ ê²½ìš°)
         for (int i = 0; i < (1 << 4); i++)
         {
             int idx[4] = {0};

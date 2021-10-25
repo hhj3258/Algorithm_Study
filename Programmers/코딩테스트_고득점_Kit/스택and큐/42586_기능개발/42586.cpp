@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 
@@ -7,9 +7,9 @@ using namespace std;
 vector<int> solution(vector<int> progresses, vector<int> speeds);
 
 int main() {
-	//ÀÔ·Â ¹è¿­Àº 100°³ ÀÌÇÏ
-	vector<int> progresses1 = { 93,30,55 };		//100 ¹Ì¸¸ÀÇ ÀÚ¿¬¼ö
-	vector<int> speeds1 = { 1,30,5 };				//100 ÀÌÇÏÀÇ ÀÚ¿¬¼ö
+	//ì…ë ¥ ë°°ì—´ì€ 100ê°œ ì´í•˜
+	vector<int> progresses1 = { 93,30,55 };		//100 ë¯¸ë§Œì˜ ìì—°ìˆ˜
+	vector<int> speeds1 = { 1,30,5 };				//100 ì´í•˜ì˜ ìì—°ìˆ˜
 
 	vector<int> progresses2 = { 95, 90, 99, 99, 80, 99 };
 	vector<int> speeds2 = { 1, 1, 1, 1, 1, 1 };
@@ -18,7 +18,7 @@ int main() {
 	vector<int> sol=solution(progresses1, speeds1);
 
 	for (int i = 0; i < sol.size(); i++) {
-		cout << i + 1 << "ÀÏ Â°: " << sol[i] << endl;
+		cout << i + 1 << "ì¼ ì§¸: " << sol[i] << endl;
 	}
 }
 

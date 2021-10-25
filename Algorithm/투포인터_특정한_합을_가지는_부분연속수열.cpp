@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -22,7 +22,7 @@ int main()
         if (sum == m)
             result++;
 
-        sum -= data[i]; //start(i)¸¦ ¿ìÃøÀ¸·Î ÀÌµ¿ÇÏ±â À§ÇØ¼­
+        sum -= data[i]; //start(i)ë¥¼ ìš°ì¸¡ìœ¼ë¡œ ì´ë™í•˜ê¸° ìœ„í•´ì„œ
     }
 
     cout << result;

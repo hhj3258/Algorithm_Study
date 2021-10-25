@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -9,8 +9,8 @@ using namespace std;
 class Songs
 {
 public:
-    int num;   // °íÀ¯¹øÈ£
-    int plays; // Àç»ıÈ½¼ö
+    int num;   // ê³ ìœ ë²ˆí˜¸
+    int plays; // ì¬ìƒíšŸìˆ˜
 
     Songs(int plays, int num)
     {

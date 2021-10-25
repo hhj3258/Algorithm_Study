@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <queue>
 #include <algorithm>
@@ -6,32 +6,32 @@ using namespace std;
 
 void BlackJack(int N, int M, vector<int> card)
 {
-    //Ä«µåµéÀ» ¿À¸§Â÷¼ø Á¤·Ä
+    //ì¹´ë“œë“¤ì„ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
     sort(card.begin(), card.end());
 
-    //¿À¸§Â÷¼ø Á¤·ÄµÈ ¿ì¼±¼øÀ§ Å¥ ¼±¾ğ
+    //ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬ëœ ìš°ì„ ìˆœìœ„ í ì„ ì–¸
     priority_queue<int, vector<int>, less<int>> answer_q;
 
-    //°¡Àå Å« 3°³ Ä«µåÀÇ index
+    //ê°€ì¥ í° 3ê°œ ì¹´ë“œì˜ index
     int big_idx = card.size() - 1;
     int mid_idx = card.size() - 2;
     int sml_idx = card.size() - 3;
 
     int sum_temp;
 
-    //3ÀåÀÇ Ä«µåÀÇ ÇÕÀ» ±¸ÇØ¾ßÇÏ¹Ç·Î
-    //sml_idx=0, mid_idx=1, big_idx=2 ÀÏ ¶§±îÁö ¹İº¹
+    //3ì¥ì˜ ì¹´ë“œì˜ í•©ì„ êµ¬í•´ì•¼í•˜ë¯€ë¡œ
+    //sml_idx=0, mid_idx=1, big_idx=2 ì¼ ë•Œê¹Œì§€ ë°˜ë³µ
     while (big_idx > 1)
     {
-        //Ä«µå 3ÀåÀÇ ÇÕ
+        //ì¹´ë“œ 3ì¥ì˜ í•©
         sum_temp = card[sml_idx] + card[mid_idx] + card[big_idx];
 
-        //°úÁ¤ Ãâ·Â
+        //ê³¼ì • ì¶œë ¥
         cout << "idx: [" << sml_idx << " " << mid_idx << " " << big_idx << "] ,  ";
         cout << card[sml_idx] << " + " << card[mid_idx] << " + " << card[big_idx] << " = ";
         cout << sum_temp << endl;
 
-        //Ä«µå 3ÀåÀÇ ÇÕÀÌ Mº¸´Ù ÀÛÀ¸¸é answer_q¿¡ ³Ö¾îÁÜ
+        //ì¹´ë“œ 3ì¥ì˜ í•©ì´ Më³´ë‹¤ ì‘ìœ¼ë©´ answer_qì— ë„£ì–´ì¤Œ
         if (sum_temp <= M)
             answer_q.push(sum_temp);
 
@@ -55,7 +55,7 @@ void BlackJack(int N, int M, vector<int> card)
         }
     }
 
-    //Á¤´ä Ãâ·Â
+    //ì •ë‹µ ì¶œë ¥
     cout << "answer: " << answer_q.top() << endl;
 }
 

@@ -1,10 +1,10 @@
-#include <string>
+﻿#include <string>
 #include <vector>
 #include <iostream>
 #include <queue>
 using namespace std;
 
-// 동 서 남 북
+// 遺
 int dy[] = {0, 0, 1, -1};
 int dx[] = {1, -1, 0, 0};
 

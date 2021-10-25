@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -6,14 +6,14 @@
 
 using namespace std;
 
-// mapÀÇ second °ª: vector<Songs>
-// Songs(°íÀ¯¹øÈ£, Àç»ıÈ½¼ö)
-// pair·Î °¡´ÉÇÏÁö¸¸ °´Ã¼·Î ¸¸µé¾î Á¢±ÙÇÏ´Â ÆíÀÌ ´õ Á÷°üÀûÀÓ
+// mapì˜ second ê°’: vector<Songs>
+// Songs(ê³ ìœ ë²ˆí˜¸, ì¬ìƒíšŸìˆ˜)
+// pairë¡œ ê°€ëŠ¥í•˜ì§€ë§Œ ê°ì²´ë¡œ ë§Œë“¤ì–´ ì ‘ê·¼í•˜ëŠ” í¸ì´ ë” ì§ê´€ì ì„
 class Songs
 {
 public:
-    int num;   // °íÀ¯¹øÈ£
-    int plays; // Àç»ıÈ½¼ö
+    int num;   // ê³ ìœ ë²ˆí˜¸
+    int plays; // ì¬ìƒíšŸìˆ˜
 
     Songs(int plays, int num)
     {
@@ -22,9 +22,9 @@ public:
     }
 };
 
-// vector<Songs> Á¤·Ä: ³»¸²Â÷¼ø
-// Àå¸£º° Àç»ıÈ½¼ö°¡ ¸¹Àº 2 °î±îÁö¸¸ »Ì¾ÆÁÖ±â À§ÇÔ
-// Àç»ıÈ½¼ö°¡ °°À¸¸é °íÀ¯¹øÈ£°¡ ³·Àº ¼ø, ±× ¿Ü¿¡´Â Àç»ıÈ½¼ö°¡ ¸¹Àº ¼ø
+// vector<Songs> ì •ë ¬: ë‚´ë¦¼ì°¨ìˆœ
+// ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜ê°€ ë§ì€ 2 ê³¡ê¹Œì§€ë§Œ ë½‘ì•„ì£¼ê¸° ìœ„í•¨
+// ì¬ìƒíšŸìˆ˜ê°€ ê°™ìœ¼ë©´ ê³ ìœ ë²ˆí˜¸ê°€ ë‚®ì€ ìˆœ, ê·¸ ì™¸ì—ëŠ” ì¬ìƒíšŸìˆ˜ê°€ ë§ì€ ìˆœ
 bool cmp(Songs &a, Songs &b)
 {
     if (a.plays == b.plays)
@@ -33,8 +33,8 @@ bool cmp(Songs &a, Songs &b)
         return a.plays > b.plays;
 }
 
-// order_v Á¤·Ä: Àå¸£º° Àç»ıÈ½¼ö ÇÕÀÇ ³»¸²Â÷¼ø
-// Àå¸£º°·Î Àç»ıÈ½¼öÀÇ ÇÕÀÌ Å« ¼øÀ¸·Î Á¤·ÄÇÏ±â À§ÇÔ
+// order_v ì •ë ¬: ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜ í•©ì˜ ë‚´ë¦¼ì°¨ìˆœ
+// ì¥ë¥´ë³„ë¡œ ì¬ìƒíšŸìˆ˜ì˜ í•©ì´ í° ìˆœìœ¼ë¡œ ì •ë ¬í•˜ê¸° ìœ„í•¨
 bool cmp2(pair<int, unordered_map<string, vector<Songs>>::iterator> &a,
           pair<int, unordered_map<string, vector<Songs>>::iterator> &b)
 {
@@ -45,19 +45,19 @@ vector<int> solution(vector<string> genres, vector<int> plays)
 {
     vector<int> answer;
 
-    //mapÀ» ±»ÀÌ »ç¿ëÇÒ ÀÌÀ¯°¡ ¾ø±â ¶§¹®¿¡ ´õ ºü¸¥ Å½»öÀÌ °¡´ÉÇÑ unordered_map »ç¿ë
-    //album[Àå¸£¸í, [°íÀ¯¹øÈ£, Àå¸£º° Àç»ıÈ½¼ö]]
+    //mapì„ êµ³ì´ ì‚¬ìš©í•  ì´ìœ ê°€ ì—†ê¸° ë•Œë¬¸ì— ë” ë¹ ë¥¸ íƒìƒ‰ì´ ê°€ëŠ¥í•œ unordered_map ì‚¬ìš©
+    //album[ì¥ë¥´ëª…, [ê³ ìœ ë²ˆí˜¸, ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜]]
     unordered_map<string, vector<Songs>> album;
 
-    //genres º¤ÅÍ¿¡¼­ Àç»ıÈ½¼ö¿Í °íÀ¯¹øÈ£¸¦ Ã£¾Æ album¿¡ ³Ö¾îÁÜ
+    //genres ë²¡í„°ì—ì„œ ì¬ìƒíšŸìˆ˜ì™€ ê³ ìœ ë²ˆí˜¸ë¥¼ ì°¾ì•„ albumì— ë„£ì–´ì¤Œ
     for (int i = 0; i < genres.size(); i++)
         album[genres[i]].push_back(Songs(plays[i], i));
 
-    //albumÀÇ Àå¸£ °¹¼ö¸¸Å­ µ¹¸é¼­ Àå¸£º° vector<Songs> À» ³»¸²Â÷¼ø Á¤·Ä
+    //albumì˜ ì¥ë¥´ ê°¯ìˆ˜ë§Œí¼ ëŒë©´ì„œ ì¥ë¥´ë³„ vector<Songs> ì„ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
     for (auto iter = album.begin(); iter != album.end(); iter++)
         sort((*iter).second.begin(), (*iter).second.end(), cmp);
 
-    //Á¤·Ä ÈÄ album ¿ø¼Ò Å×½ºÆ® Ãâ·Â
+    //ì •ë ¬ í›„ album ì›ì†Œ í…ŒìŠ¤íŠ¸ ì¶œë ¥
     cout << "<sorted>" << endl;
     for (auto iter = album.begin(); iter != album.end(); iter++)
     {
@@ -71,7 +71,7 @@ vector<int> solution(vector<string> genres, vector<int> plays)
         cout << endl;
     }
 
-    // order_v[Àå¸£º° Àç»ıÈ½¼ö ÇÕ, Àå¸£º° ¹İº¹ÀÚ]
+    // order_v[ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜ í•©, ì¥ë¥´ë³„ ë°˜ë³µì]
     vector<pair<int, unordered_map<string, vector<Songs>>::iterator>> order_v;
     for (auto iter = album.begin(); iter != album.end(); iter++)
     {
@@ -84,10 +84,10 @@ vector<int> solution(vector<string> genres, vector<int> plays)
         order_v.push_back(make_pair(plays_sum, iter));
     }
 
-    //order_vÀÇ Àå¸£º° Àç»ıÈ½¼ö¸¦ ±âÁØÀ¸·Î ³»¸²Â÷¼ø Á¤·Ä
+    //order_vì˜ ì¥ë¥´ë³„ ì¬ìƒíšŸìˆ˜ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë‚´ë¦¼ì°¨ìˆœ ì •ë ¬
     sort(order_v.begin(), order_v.end(), cmp2);
 
-    //Á¤·Ä ÈÄ order_v ¿ø¼Ò Å×½ºÆ® Ãâ·Â
+    //ì •ë ¬ í›„ order_v ì›ì†Œ í…ŒìŠ¤íŠ¸ ì¶œë ¥
     cout << "<sorted_order_v>" << endl;
     for (int i = 0; i < order_v.size(); i++)
     {
@@ -95,18 +95,18 @@ vector<int> solution(vector<string> genres, vector<int> plays)
     }
     cout << endl;
 
-    //order_v[i].second == albumÀÇ iterator
+    //order_v[i].second == albumì˜ iterator
     //(*order_v[i].second).second[j] == vector<Songs>
-    //answer º¤ÅÍ¿¡ Àå¸£º°·Î ÃÖ´ë 2°î±îÁö¸¸ ³Ö¾îÁÜ
+    //answer ë²¡í„°ì— ì¥ë¥´ë³„ë¡œ ìµœëŒ€ 2ê³¡ê¹Œì§€ë§Œ ë„£ì–´ì¤Œ
     for (int i = 0; i < order_v.size(); i++)
     {
         for (int j = 0; j < (*order_v[i].second).second.size(); j++)
         {
-            //Àå¸£º° °î °¹¼ö´Â ÃÖ´ë 2°³±îÁö¸¸
+            //ì¥ë¥´ë³„ ê³¡ ê°¯ìˆ˜ëŠ” ìµœëŒ€ 2ê°œê¹Œì§€ë§Œ
             if (j == 2)
                 break;
 
-            //°íÀ¯¹øÈ£¸¦ ³Ö¾îÁÜ
+            //ê³ ìœ ë²ˆí˜¸ë¥¼ ë„£ì–´ì¤Œ
             answer.push_back((*order_v[i].second).second[j].num);
         }
     }
@@ -114,7 +114,7 @@ vector<int> solution(vector<string> genres, vector<int> plays)
     return answer;
 }
 
-//Å×½ºÆ® ÄÉÀÌ½º Ãâ·Â
+//í…ŒìŠ¤íŠ¸ ì¼€ì´ìŠ¤ ì¶œë ¥
 int main()
 {
     vector<string> genres1 = {"classic", "pop", "classic", "classic", "pop"};

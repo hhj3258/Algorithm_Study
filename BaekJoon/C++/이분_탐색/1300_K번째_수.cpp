@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <algorithm>
 #include <vector>
 using namespace std;
@@ -18,8 +18,8 @@ void Solve()
         long long cnt = 0;
         for (int i = 1; i <= N; i++)
         {
-            // mid/i = i Çà¿¡¼­ midº¸´Ù ÀÛÀº jÀÇ °¹¼ö
-            // mid/i > N °¡ µÉ °æ¿ì°¡ ÀÖÀ¸¹Ç·Î mid/i¿Í NÁß ÀÛÀº °Í
+            // mid/i = i í–‰ì—ì„œ midë³´ë‹¤ ì‘ì€ jì˜ ê°¯ìˆ˜
+            // mid/i > N ê°€ ë  ê²½ìš°ê°€ ìˆìœ¼ë¯€ë¡œ mid/iì™€ Nì¤‘ ì‘ì€ ê²ƒ
             cnt += min(mid / i, N);
         }
 

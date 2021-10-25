@@ -1,4 +1,4 @@
-#include <string>
+ï»¿#include <string>
 #include <vector>
 #include <iostream>
 #include <algorithm>
@@ -14,25 +14,25 @@ int solution(vector<int> people, int limit)
 
     while (start < end)
     {
-        //2¸íÀÇ ¹«°Ô
+        //2ëª…ì˜ ë¬´ê²Œ
         int kg = people[start] + people[end];
 
-        //2¸íÀÇ ¹«°Ô°¡ limitº¸´Ù Å©¸é ¹«°Å¿î »ç¶÷ È¥ÀÚ ÅÂ¿ò
+        //2ëª…ì˜ ë¬´ê²Œê°€ limitë³´ë‹¤ í¬ë©´ ë¬´ê±°ìš´ ì‚¬ëŒ í˜¼ì íƒœì›€
         if (kg > limit)
         {
             end--;
         }
-        //2¸íÀÇ ¹«°Ô°¡ limitº¸´Ù ÀÛ°Å³ª °°À¸¸é µÎ ¸í ´Ù ÅÂ¿ò
+        //2ëª…ì˜ ë¬´ê²Œê°€ limitë³´ë‹¤ ì‘ê±°ë‚˜ ê°™ìœ¼ë©´ ë‘ ëª… ë‹¤ íƒœì›€
         else if (kg <= limit)
         {
             start++;
             end--;
         }
-        //¹èÀÇ °¹¼ö + 1
+        //ë°°ì˜ ê°¯ìˆ˜ + 1
         answer++;
     }
 
-    //»ç¶÷ÀÌ ³²¾ÆÀÖÀ¸¸é ¹èÀÇ °¹¼ö + 1
+    //ì‚¬ëŒì´ ë‚¨ì•„ìˆìœ¼ë©´ ë°°ì˜ ê°¯ìˆ˜ + 1
     if (start == end)
     {
         answer++;

@@ -1,10 +1,10 @@
-#include <bits/stdc++.h>
+Ôªø#include <bits/stdc++.h>
 using namespace std;
 
-//M: ∞°∑Œ, N: ºº∑Œ, K: πË√ﬂ
+//M: Í∞ÄÎ°ú, N: ÏÑ∏Î°ú, K: Î∞∞Ï∂î
 int M, N, K;
 
-// µø º≠ ≥≤ ∫œ
+// Îèô ÏÑú ÎÇ® Î∂Å
 int dy[] = {0, 0, 1, -1};
 int dx[] = {1, -1, 0, 0};
 
@@ -39,7 +39,7 @@ void Solve(vector<vector<bool>> &field, int y, int x)
 
 int main()
 {
-    int T; // ≈◊Ω∫∆Æƒ…¿ÃΩ∫
+    int T; // ÌÖåÏä§Ìä∏ÏºÄÏù¥Ïä§
     cin >> T;
     vector<int> answer(T);
 

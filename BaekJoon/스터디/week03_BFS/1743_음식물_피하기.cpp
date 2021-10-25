@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int N, M, K;
@@ -41,7 +41,7 @@ int Solve(vector<vector<bool>> &trash, int y, int x)
 
 int main()
 {
-    // ¼¼·Î >> °¡·Î >> À½½Ä¹° °³¼ö
+    // ì„¸ë¡œ >> ê°€ë¡œ >> ìŒì‹ë¬¼ ê°œìˆ˜
     cin >> N >> M >> K;
 
     vector<vector<bool>> trash(N + 1, vector<bool>(M + 1));

@@ -1,10 +1,10 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int n;
 vector<bool> visited(9);
 
-//¼ø¿­
+//ìˆœì—´
 void DFS(vector<int> nums, int cnt, vector<vector<int>> &orders)
 {
     if (cnt == n)
@@ -43,7 +43,7 @@ int solution(int k, vector<vector<int>> dungeons)
         {
             if (temp_k >= dungeons[orders[i][j]][0])
             {
-                temp_k = temp_k - dungeons[orders[i][j]][1]; // ¼Ò¸ğ ÇÇ·Îµµ
+                temp_k = temp_k - dungeons[orders[i][j]][1]; // ì†Œëª¨ í”¼ë¡œë„
                 cnt++;
             }
         }

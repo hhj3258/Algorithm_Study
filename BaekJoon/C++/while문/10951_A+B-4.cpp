@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 
 using namespace std;
 
@@ -6,7 +6,7 @@ int main()
 {
     int num1, num2;
 
-    //Á¶°Ç¹®¿¡ cin ³Ö¾îÁÖ¸é ¸¶Áö¸·¿¡ eof¸¦ ¸¸³ª°í bool °ª false ¸®ÅÏ
+    //ì¡°ê±´ë¬¸ì— cin ë„£ì–´ì£¼ë©´ ë§ˆì§€ë§‰ì— eofë¥¼ ë§Œë‚˜ê³  bool ê°’ false ë¦¬í„´
     while (cin >> num1 >> num2)
         cout << (num1 + num2) << endl;
 }

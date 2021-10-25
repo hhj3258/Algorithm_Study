@@ -1,9 +1,9 @@
-#include <iostream>
+ï»¿#include <iostream>
 using namespace std;
 
 int main(void) {
-	int num = 0;			//1ÁÙ
-	int result = 0;		//ÃÖÁ¾ true °³¼ö
+	int num = 0;			//1ì¤„
+	int result = 0;		//ìµœì¢… true ê°œìˆ˜
 	string test1[100];
 
 	cin >> num;
@@ -18,8 +18,8 @@ int main(void) {
 		temp1[0] = test1[j].at(0);
 
 		for (int i = 0; i < test1[j].length(); i++) {
-			if (temp1[cnt] != test1[j].at(i)) 			//Àâ¾Æ³õÀº ¹®ÀÚ(temp1)¿Í i ¹øÂ° ¹®ÀÚ(test1)°¡ ´Ù¸£´Ù¸é
-				temp1[++cnt] = test1[j].at(i);		//temp1 ÀÇ ´ÙÀ½ ÀÎµ¦½º¿¡ i ¹øÂ° ¹®ÀÚ »ðÀÔ
+			if (temp1[cnt] != test1[j].at(i)) 			//ìž¡ì•„ë†“ì€ ë¬¸ìž(temp1)ì™€ i ë²ˆì§¸ ë¬¸ìž(test1)ê°€ ë‹¤ë¥´ë‹¤ë©´
+				temp1[++cnt] = test1[j].at(i);		//temp1 ì˜ ë‹¤ìŒ ì¸ë±ìŠ¤ì— i ë²ˆì§¸ ë¬¸ìž ì‚½ìž…
 		}
 
 		for (int i = 0; i < cnt; i++) {

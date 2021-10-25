@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -7,12 +7,12 @@ int main()
     cin.tie(nullptr);
 
     int N, M;
-    // ¼öÀÇ °³¼ö >> ÇÕÀ» ±¸ÇØ¾ß ÇÏ´Â È½¼ö
+    // ìˆ˜ì˜ ê°œìˆ˜ >> í•©ì„ êµ¬í•´ì•¼ í•˜ëŠ” íšŸìˆ˜
     cin >> N >> M;
 
-    // ¿ø¼Òµé
+    // ì›ì†Œë“¤
     vector<int> nums(N);
-    // ´©Àû ÇÕ
+    // ëˆ„ì  í•©
     vector<int> sums(N + 1);
     for (int i = 0; i < N; i++)
     {
@@ -20,7 +20,7 @@ int main()
         sums[i + 1] = sums[i] + nums[i];
     }
 
-    // ÇÕÀ» ±¸ÇØ¾ß ÇÏ´Â ±¸°£
+    // í•©ì„ êµ¬í•´ì•¼ í•˜ëŠ” êµ¬ê°„
     vector<pair<int, int>> sections(M);
     int left, right;
     for (int i = 0; i < M; i++)

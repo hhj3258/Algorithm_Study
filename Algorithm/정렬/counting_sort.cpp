@@ -1,19 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 #include <ctime>
 
 using namespace std;
 
-#define DATA_SIZE 20 //Á¤·ÄÇØ¾ßµÉ ¼öÀÇ °¹¼ö
-#define MAX_NUM 10   //¼ıÀÚÀÇ ÃÖ´ë°ª
+#define DATA_SIZE 20 //ì •ë ¬í•´ì•¼ë  ìˆ˜ì˜ ê°¯ìˆ˜
+#define MAX_NUM 10   //ìˆ«ìì˜ ìµœëŒ€ê°’
 
-int data_arr[DATA_SIZE];  //µé¾î¿À´Â ¼öÀÇ °¹¼ö¸¸Å­ ÇÒ´ç
-int count[MAX_NUM];       //¼ıÀÚÀÇ ÃÖ´ë°ª¸¸Å­ ÇÒ´ç
-vector<int> sorted_datas; //Á¤·ÄµÈ °ªÀ» ³ÖÀ» º¤ÅÍ
+int data_arr[DATA_SIZE];  //ë“¤ì–´ì˜¤ëŠ” ìˆ˜ì˜ ê°¯ìˆ˜ë§Œí¼ í• ë‹¹
+int count[MAX_NUM];       //ìˆ«ìì˜ ìµœëŒ€ê°’ë§Œí¼ í• ë‹¹
+vector<int> sorted_datas; //ì •ë ¬ëœ ê°’ì„ ë„£ì„ ë²¡í„°
 
 void CountingSort(int datas[])
 {
-    //count ¹è¿­ÀÌ Áßº¹µÇ´Â ¼ıÀÚÀÇ °³¼ö¸¦ Ä«¿îÆÃÇÔ
+    //count ë°°ì—´ì´ ì¤‘ë³µë˜ëŠ” ìˆ«ìì˜ ê°œìˆ˜ë¥¼ ì¹´ìš´íŒ…í•¨
     for (int i = 0; i < DATA_SIZE; i++)
         count[datas[i]]++;
 
@@ -24,8 +24,8 @@ void CountingSort(int datas[])
     }
     cout << endl;
 
-    //count[i]=0ÀÏ °æ¿ì´Â Á¸ÀçÇÏÁö ¾Ê´Â ¼ıÀÚÀÌ¹Ç·Î Ãß°¡ÇÒ ÇÊ¿ä°¡ ¾øÀ½
-    //count[i]°¡ 0ÀÌ ¾Æ´Ï¸é sorted_datas ¹è¿­¿¡ count[i]ÀÇ °ª¸¸Å­ ¹İº¹ÇØ¼­ Ãß°¡
+    //count[i]=0ì¼ ê²½ìš°ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ìˆ«ìì´ë¯€ë¡œ ì¶”ê°€í•  í•„ìš”ê°€ ì—†ìŒ
+    //count[i]ê°€ 0ì´ ì•„ë‹ˆë©´ sorted_datas ë°°ì—´ì— count[i]ì˜ ê°’ë§Œí¼ ë°˜ë³µí•´ì„œ ì¶”ê°€
     for (int i = 0; i < MAX_NUM; i++)
     {
         if (count[i] != 0)

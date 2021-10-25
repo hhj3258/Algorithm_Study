@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+ï»¿#include <bits/stdc++.h>
 using namespace std;
 
 vector<string> solution(vector<vector<int>> line)
@@ -16,7 +16,7 @@ vector<string> solution(vector<vector<int>> line)
             vector<int> j_line = line[j];
 
             if (i_line[0] == j_line[0] && i_line[1] == j_line[1])
-                continue; // ±â¿ï±â °°À½
+                continue; // ê¸°ìš¸ê¸° ê°™ìŒ
 
             long long A = i_line[0], B = i_line[1];
             long long C = j_line[0], D = j_line[1];
@@ -30,7 +30,7 @@ vector<string> solution(vector<vector<int>> line)
                 continue;
 
             if (x_up % down != 0 || y_up % down != 0)
-                continue; // Á¤¼ö ÆÇº°
+                continue; // ì •ìˆ˜ íŒë³„
 
             long long x = x_up / down;
             long long y = y_up / down;

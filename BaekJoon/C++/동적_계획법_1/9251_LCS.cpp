@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -6,21 +6,21 @@ string str1, str2;
 
 void Solve()
 {
-    //°ø¹é(0)ÀÎ Çà°ú ¿­À» ÇÑ °³¾¿ Ãß°¡ÇØ¾ß ÇÔ
+    //ê³µë°±(0)ì¸ í–‰ê³¼ ì—´ì„ í•œ ê°œì”© ì¶”ê°€í•´ì•¼ í•¨
     vector<vector<int>> dp(str1.size() + 1, vector<int>(str2.size() + 1));
 
-    //°ø¹éÀÎ Çà°ú ¿­À» °Ç³Ê¶Ù°í i=1,j=1ºÎÅÍ ½ÃÀÛ
+    //ê³µë°±ì¸ í–‰ê³¼ ì—´ì„ ê±´ë„ˆë›°ê³  i=1,j=1ë¶€í„° ì‹œìž‘
     for (int i = 1; i <= str1.size(); i++)
     {
         for (int j = 1; j <= str2.size(); j++)
         {
-            //(i-1)°ú (j-1) ¹øÂ° ¹®ÀÚ°¡ ¼­·Î °°´Ù¸é -> °ø¹éÀÎ Çà°ú ¿­ÀÌ ÀÖÀ¸¹Ç·Î ¹®ÀÚ¿­¿¡ -1¾¿ ¿ÀÇÁ¼ÂÀ» Áà¾ß ¸ÂÀ½
+            //(i-1)ê³¼ (j-1) ë²ˆì§¸ ë¬¸ìžê°€ ì„œë¡œ ê°™ë‹¤ë©´ -> ê³µë°±ì¸ í–‰ê³¼ ì—´ì´ ìžˆìœ¼ë¯€ë¡œ ë¬¸ìžì—´ì— -1ì”© ì˜¤í”„ì…‹ì„ ì¤˜ì•¼ ë§žìŒ
             if (str1[i - 1] == str2[j - 1])
-                //dp[i][j] = (i-1, j-1)°ª¿¡ +1 ÇÑ °ªÀ¸·Î °»½Å
+                //dp[i][j] = (i-1, j-1)ê°’ì— +1 í•œ ê°’ìœ¼ë¡œ ê°±ì‹ 
                 dp[i][j] = dp[i - 1][j - 1] + 1;
-            //°°Áö ¾Ê´Ù¸é
+            //ê°™ì§€ ì•Šë‹¤ë©´
             else
-                //dp[i][j] = À§¿Í ¿ÞÂÊ °ª Áß Å« °ªÀ¸·Î °»½Å
+                //dp[i][j] = ìœ„ì™€ ì™¼ìª½ ê°’ ì¤‘ í° ê°’ìœ¼ë¡œ ê°±ì‹ 
                 dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
         }
     }

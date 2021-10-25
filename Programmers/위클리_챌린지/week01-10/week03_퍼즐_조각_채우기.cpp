@@ -1,4 +1,4 @@
-#include <vector>
+ï»¿#include <vector>
 #include <queue>
 #include <iostream>
 #include <algorithm>
@@ -10,25 +10,25 @@ vector<vector<pair<int, int>>> PuzzleDivision(vector<vector<int>> &tables);
 vector<vector<pair<int, int>>> PuzzleRotation(vector<vector<pair<int, int>>> puzzles);
 int PuzzleMatching(vector<vector<pair<int, int>>> boardBlanks, vector<vector<pair<int, int>>> puzzles);
 
-//¸ŞÀÎ ½ÇÇà ÇÔ¼ö
+//ë©”ì¸ ì‹¤í–‰ í•¨ìˆ˜
 int solution(vector<vector<int>> game_board, vector<vector<int>> table)
 {
-    // 1) game_boardÀÇ ¿ø¼ÒµéÀ» ¹İÀü
+    // 1) game_boardì˜ ì›ì†Œë“¤ì„ ë°˜ì „
     GameBoardReversing(game_board);
 
-    // 2) game_boardÀÇ ºóÄ­ µ¢¾î¸®µé Å½»ö
+    // 2) game_boardì˜ ë¹ˆì¹¸ ë©ì–´ë¦¬ë“¤ íƒìƒ‰
     vector<vector<pair<int, int>>> boardBlanks = PuzzleDivision(game_board);
 
-    // 3) tableÀÇ Á¶°¢µé Å½»ö
+    // 3) tableì˜ ì¡°ê°ë“¤ íƒìƒ‰
     vector<vector<pair<int, int>>> puzzles = PuzzleDivision(table);
 
-    // 4) 3¹ø¿¡¼­ Ã£Àº Á¶°¢µéÀ» 2¹ø¿¡¼­ Ã£Àº ºóÄ­µé°ú ºñ±³ÇÏ¸ç ÆÛÁñ ¸ÂÃß±â
+    // 4) 3ë²ˆì—ì„œ ì°¾ì€ ì¡°ê°ë“¤ì„ 2ë²ˆì—ì„œ ì°¾ì€ ë¹ˆì¹¸ë“¤ê³¼ ë¹„êµí•˜ë©° í¼ì¦ ë§ì¶”ê¸°
     int answer = PuzzleMatching(boardBlanks, puzzles);
 
     return answer;
 }
 
-//°ÔÀÓº¸µå 0-1 ¹İÀü
+//ê²Œì„ë³´ë“œ 0-1 ë°˜ì „
 void GameBoardReversing(vector<vector<int>> &my_board)
 {
     for (int i = 0; i < my_board.size(); i++)
@@ -43,7 +43,7 @@ void GameBoardReversing(vector<vector<int>> &my_board)
     }
 }
 
-//º¸µåÀÇ ºóÄ­ µ¢¾î¸®µé°ú ÆÛÁñµéÀÇ ÁÂÇ¥¸¦ [0,0] ±âÁØÀ¸·Î º¯°æ
+//ë³´ë“œì˜ ë¹ˆì¹¸ ë©ì–´ë¦¬ë“¤ê³¼ í¼ì¦ë“¤ì˜ ì¢Œí‘œë¥¼ [0,0] ê¸°ì¤€ìœ¼ë¡œ ë³€ê²½
 vector<vector<pair<int, int>>> PuzzleReduction(vector<vector<pair<int, int>>> puzzles)
 {
     for (int i = 0; i < puzzles.size(); i++)
@@ -70,7 +70,7 @@ vector<vector<pair<int, int>>> PuzzleReduction(vector<vector<pair<int, int>>> pu
     return puzzles;
 }
 
-//ÆÛÁñ ³ª´©±â
+//í¼ì¦ ë‚˜ëˆ„ê¸°
 vector<vector<pair<int, int>>> PuzzleDivision(vector<vector<int>> &tables)
 {
     vector<vector<pair<int, int>>> result;
@@ -108,22 +108,22 @@ vector<vector<pair<int, int>>> PuzzleDivision(vector<vector<int>> &tables)
             temp.push_back(q.front());
             q.pop();
 
-            if (cur_i > 0 && tables[cur_i - 1][cur_j]) //»ó
+            if (cur_i > 0 && tables[cur_i - 1][cur_j]) //ìƒ
             {
                 q.push(make_pair(cur_i - 1, cur_j));
                 tables[cur_i - 1][cur_j] = 0;
             }
-            if (cur_i < tables.size() - 1 && tables[cur_i + 1][cur_j]) //ÇÏ
+            if (cur_i < tables.size() - 1 && tables[cur_i + 1][cur_j]) //í•˜
             {
                 q.push(make_pair(cur_i + 1, cur_j));
                 tables[cur_i + 1][cur_j] = 0;
             }
-            if (cur_j > 0 && tables[cur_i][cur_j - 1]) //ÁÂ
+            if (cur_j > 0 && tables[cur_i][cur_j - 1]) //ì¢Œ
             {
                 q.push(make_pair(cur_i, cur_j - 1));
                 tables[cur_i][cur_j - 1] = 0;
             }
-            if (cur_j < tables.size() - 1 && tables[cur_i][cur_j + 1]) //¿ì
+            if (cur_j < tables.size() - 1 && tables[cur_i][cur_j + 1]) //ìš°
             {
                 q.push(make_pair(cur_i, cur_j + 1));
                 tables[cur_i][cur_j + 1] = 0;
@@ -139,7 +139,7 @@ vector<vector<pair<int, int>>> PuzzleDivision(vector<vector<int>> &tables)
     return result;
 }
 
-//Çà·Ä È¸Àü: -90µµ È¸Àü(¹İ½Ã°è¹æÇâ)
+//í–‰ë ¬ íšŒì „: -90ë„ íšŒì „(ë°˜ì‹œê³„ë°©í–¥)
 vector<vector<pair<int, int>>> PuzzleRotation(vector<vector<pair<int, int>>> puzzles)
 {
     for (int i = 0; i < puzzles.size(); i++)
@@ -165,7 +165,7 @@ vector<vector<pair<int, int>>> PuzzleRotation(vector<vector<pair<int, int>>> puz
     return puzzles;
 }
 
-//ÆÛÁñ ¸ÂÃß±â
+//í¼ì¦ ë§ì¶”ê¸°
 int PuzzleMatching(vector<vector<pair<int, int>>> boardBlanks, vector<vector<pair<int, int>>> puzzles)
 {
     int temp_cnt = 1;

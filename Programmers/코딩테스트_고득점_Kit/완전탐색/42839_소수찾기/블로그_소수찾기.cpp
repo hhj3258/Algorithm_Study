@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -8,12 +8,12 @@ using namespace std;
 int solution(string numbers)
 {
     int answer = 0;
-    set<int> my_set; //Áßº¹°ªÀ» Á¦°ÅÇÏ±â À§ÇØ set »ç¿ë
+    set<int> my_set; //ì¤‘ë³µê°’ì„ ì œê±°í•˜ê¸° ìœ„í•´ set ì‚¬ìš©
 
-    //¸ğµç ¼ø¿­ Á¶ÇÕÀ» ±¸ÇÏ±â À§ÇØ ¿À¸§Â÷¼ø Á¤·Ä
+    //ëª¨ë“  ìˆœì—´ ì¡°í•©ì„ êµ¬í•˜ê¸° ìœ„í•´ ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
     sort(numbers.begin(), numbers.end());
 
-    cout << "Á¶ÇÕÀÇ °æ¿ìÀÇ ¼ö" << endl;
+    cout << "ì¡°í•©ì˜ ê²½ìš°ì˜ ìˆ˜" << endl;
     do
     {
         string temp = "";
@@ -28,7 +28,7 @@ int solution(string numbers)
     } while (next_permutation(numbers.begin(), numbers.end()));
     cout << endl;
 
-    cout << "¸¸µé¾îÁø Á¶ÇÕ Áß Áßº¹°ª Á¦°Å" << endl;
+    cout << "ë§Œë“¤ì–´ì§„ ì¡°í•© ì¤‘ ì¤‘ë³µê°’ ì œê±°" << endl;
     for (auto iter = my_set.begin(); iter != my_set.end(); iter++)
     {
         cout << *iter << ", ";
@@ -36,15 +36,15 @@ int solution(string numbers)
     cout << endl
          << endl;
 
-    //*my_set.rbegin() ==> my_setÀÇ °¡Àå ¸¶Áö¸· °ª(°¡Àå Å« °ª)
+    //*my_set.rbegin() ==> my_setì˜ ê°€ì¥ ë§ˆì§€ë§‰ ê°’(ê°€ì¥ í° ê°’)
     int max_num = *my_set.rbegin();
-    //¼Ò¼ö ÆÇº° º¤ÅÍ¸¦ °¡Àå Å« °ªÀÇ Å©±â¸¸Å­ ÃÊ±âÈ­
+    //ì†Œìˆ˜ íŒë³„ ë²¡í„°ë¥¼ ê°€ì¥ í° ê°’ì˜ í¬ê¸°ë§Œí¼ ì´ˆê¸°í™”
     vector<bool> isPrime(max_num, true);
-    //¼ıÀÚ 0,1Àº ¼Ò¼ö°¡ ¾Æ´Ï¹Ç·Î false
+    //ìˆ«ì 0,1ì€ ì†Œìˆ˜ê°€ ì•„ë‹ˆë¯€ë¡œ false
     isPrime[0] = false;
     isPrime[1] = false;
 
-    cout << "¿¡¶óÅä½ºÅ×³×½ºÀÇ Ã¼" << endl;
+    cout << "ì—ë¼í† ìŠ¤í…Œë„¤ìŠ¤ì˜ ì²´" << endl;
     for (int i = 2; i * i <= max_num; i++)
     {
         if (isPrime[i])
@@ -60,7 +60,7 @@ int solution(string numbers)
     cout << endl
          << endl;
 
-    //iter°¡ my_setÀ» ¼øÈ¸ÇÏ¸é¼­ isPrime[*iter]°¡ ¼Ò¼ö¶ó¸é answer++
+    //iterê°€ my_setì„ ìˆœíšŒí•˜ë©´ì„œ isPrime[*iter]ê°€ ì†Œìˆ˜ë¼ë©´ answer++
     for (auto iter = my_set.begin(); iter != my_set.end(); iter++)
     {
         if (isPrime[*iter])
