@@ -3,6 +3,7 @@
 #include <queue>
 
 using namespace std;
+#define MAX 100000000
 
 // 노드 사이의 거리를 저장할 배열
 int dist_arr[100001];
@@ -37,7 +38,7 @@ void Dijkstra(vector<vector<pair<int, int>>> &graph, int start)
             int now_v2 = graph[now_v1][i].first;
 
             // now_v1과 now_v2 사이의 기존 최단 경로(dist_arr[now_v2])가
-            // 새로운 최단경로(cost)보다 길다면
+            // 새로운 최단경로(cost)보다 길다면 갱신
             if (cost < dist_arr[now_v2])
             {
                 dist_arr[now_v2] = cost;
@@ -70,7 +71,7 @@ int main()
     }
 
     // 노드 사이의 최단 거리의 초기값은 무한대로 설정
-    fill(dist_arr, dist_arr + 100001, INT_MAX);
+    fill(dist_arr, dist_arr + 100001, MAX);
 
     Dijkstra(graph, start);
 
@@ -81,7 +82,7 @@ int main()
         cout << "node: " << i << ", ";
 
         cout << "dist: ";
-        if (dist_arr[i] == INT_MAX)
+        if (dist_arr[i] == MAX)
             cout << "INF" << endl;
         else
             cout << dist_arr[i] << endl;
