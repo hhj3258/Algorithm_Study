@@ -6,14 +6,13 @@ int dist_arr[20001];
 
 void Solve(vector<vector<pair<int, int>>> &graph, int start)
 {
-    priority_queue<pair<int, int>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
     pq.emplace(0, start);
     dist_arr[start] = 0;
 
     while (!pq.empty())
     {
-        // 우선순위 큐가 내림차순이므로 -1 을 곱해준다.
-        int dist = -pq.top().first;
+        int dist = pq.top().first;
         int now_v1 = pq.top().second;
         pq.pop();
 
@@ -28,7 +27,7 @@ void Solve(vector<vector<pair<int, int>>> &graph, int start)
             if (dist_arr[now_v2] > cost)
             {
                 dist_arr[now_v2] = cost;
-                pq.emplace(-cost, now_v2);
+                pq.emplace(cost, now_v2);
             }
         }
     }
