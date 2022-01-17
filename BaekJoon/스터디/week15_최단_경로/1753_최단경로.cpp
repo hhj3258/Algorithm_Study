@@ -2,7 +2,9 @@
 
 using namespace std;
 
-int dist_arr[20001];
+#define SIZE 20001
+
+int dist_arr[SIZE];
 
 void Solve(vector<vector<pair<int, int>>> &graph, int start)
 {
@@ -19,10 +21,10 @@ void Solve(vector<vector<pair<int, int>>> &graph, int start)
         if (dist_arr[now_v1] < dist)
             continue;
 
-        for (int i = 0; i < graph[now_v1].size(); i++)
+        for (auto v2 : graph[now_v1])
         {
-            int cost = dist + graph[now_v1][i].second;
-            int now_v2 = graph[now_v1][i].first;
+            int cost = dist + v2.second;
+            int now_v2 = v2.first;
 
             if (dist_arr[now_v2] > cost)
             {
@@ -50,7 +52,7 @@ int main()
         graph[v1].emplace_back(v2, cost);
     }
 
-    fill(dist_arr, dist_arr + 20001, INT_MAX);
+    fill(dist_arr, dist_arr + SIZE, INT_MAX);
 
     Solve(graph, K);
 
