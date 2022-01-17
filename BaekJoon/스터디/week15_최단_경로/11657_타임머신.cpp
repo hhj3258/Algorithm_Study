@@ -17,16 +17,15 @@ bool Solve(vector<vector<pair<int, int>>> &graph, int start)
     // 노드의 갯수(N)만큼 반복
     // N-1 까지는 최단 경로를 갱신한다.
     // N 번째에서 갱신이 일어나면 음의 사이클이 있는 것으로 판단.
-    for (int n = 0; n < N; n++)
+    for (int n = 1; n <= N; n++)
     {
-        // 노드의 갯수만큼 반복
         for (int v1 = 1; v1 <= N; v1++)
         {
             // v1 노드와 인접한 노드의 갯수만큼 반복
             for (int j = 0; j < graph[v1].size(); j++)
             {
                 int v2 = graph[v1][j].first;
-                int cost = dist_arr[v1] + graph[v1][j].second;
+                long long cost = dist_arr[v1] + graph[v1][j].second;
 
                 // 현재 v1 노드까지의 거리가 무한대라면 무시한다.
                 if (dist_arr[v1] == INT_MAX)
@@ -40,7 +39,7 @@ bool Solve(vector<vector<pair<int, int>>> &graph, int start)
                     dist_arr[v2] = cost;
 
                     // N 번째 반복에서 갱신이 일어났다면
-                    if (n == N - 1)
+                    if (n == N)
                     {
                         // 음의 사이클이 감지되었다고 알린다.
                         return true;
