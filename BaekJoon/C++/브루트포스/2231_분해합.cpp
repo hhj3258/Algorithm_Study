@@ -1,36 +1,50 @@
 ﻿#include <iostream>
 #include <string>
+
 using namespace std;
 
-void Decompose_sum(int n)
+int SumCalc(const int &num)
 {
-    string str_n = to_string(n);
-    int digits = str_n.size();
-    int inc_num = n - 9 * digits;
-    int answer = 0;
-
-    for (inc_num; inc_num <= n; inc_num++)
+    int sum = num;
+    string num_str = to_string(num);
+    for (int i = 0; i < num_str.size(); i++)
     {
-        string str_inc_num = to_string(inc_num);
-        int temp = inc_num;
-
-        for (int i = 0; i < str_inc_num.size(); i++)
-            temp += (str_inc_num[i] - '0');
-
-        if (temp == n)
-        {
-            answer = inc_num;
-            break;
-        }
+        sum += num_str[i] - '0';
     }
 
-    cout << answer << endl;
+    return sum;
+}
+
+void Solve(int N)
+{
+    int digit = to_string(N).size();
+    // N = K + (k1 + k2 + k3)
+    // K = N - (k1 + k2 + k3)
+    // 각 자릿수(k1, k2, k3)의 최고값 = 9
+    // (최소)K = N - 9 * 3
+    int min_num = N - 9 * digit;
+
+    int answer = 0;
+    while (min_num <= N)
+    {
+        int now_sum = SumCalc(min_num);
+
+        if (now_sum == N)
+        {
+            answer = min_num;
+            break;
+        }
+
+        min_num++;
+    }
+
+    cout << answer;
 }
 
 int main()
 {
-    int n;
-    cin >> n;
+    int N;
+    cin >> N;
 
-    Decompose_sum(n);
+    Solve(N);
 }
