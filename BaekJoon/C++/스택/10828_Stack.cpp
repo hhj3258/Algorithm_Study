@@ -1,64 +1,82 @@
 ﻿#include <iostream>
-#include <algorithm>
-#include <stack>
 using namespace std;
 
-/*
-push X: 정수 X를 스택에 넣는 연산이다.
-pop: 스택에서 가장 위에 있는 정수를 빼고, 그 수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
-size: 스택에 들어있는 정수의 개수를 출력한다.
-empty: 스택이 비어있으면 1, 아니면 0을 출력한다.
-top: 스택의 가장 위에 있는 정수를 출력한다. 만약 스택에 들어있는 정수가 없는 경우에는 -1을 출력한다.
-*/
+class Stack
+{
+public:
+	void push(int number);
+	void pop();
+	int size();
+	bool empty();
+	int top();
+
+private:
+	int _size = 0;
+	int *_data = new int[10001];
+};
+
+void Stack::push(int number)
+{
+	_data[_size] = number;
+	_size++;
+}
+
+void Stack::pop()
+{
+	if (_size > 0)
+	{
+		cout << top() << '\n';
+		_size--;
+	}
+	else
+	{
+		cout << "-1" << '\n';
+	}
+}
+
+int Stack::size()
+{
+	return _size;
+}
+
+bool Stack::empty()
+{
+	return (_size == 0);
+}
+
+int Stack::top()
+{
+	if (_size <= 0)
+		return -1;
+	else
+		return _data[_size - 1];
+}
 
 int main()
 {
-	stack<int> my_stack;
-	int N;  // 주어지는 명령의 수
+	Stack myStack;
+
+	int N;
 	cin >> N;
 
-	string cmd; //명령의 종류
-	int num = 0;	//push number
-
-	for (int i = 0; i < N; i++) {
+	string cmd;
+	int number;
+	for (int i = 0; i < N; i++)
+	{
 		cin >> cmd;
 
-		if (cmd == "push") {
-			cin >> num;
-			my_stack.push(num);
+		if (cmd == "push")
+		{
+			cin >> number;
+			myStack.push(number);
 		}
-
-		if (cmd == "pop") {
-			if (my_stack.empty()) {   //스택이 비어있다면 -1 출력
-				cout << -1 << endl;
-			}
-			else {
-				cout << my_stack.top() << endl; //현재 스택의 가장 윗부분 출력
-				my_stack.pop();     // 출력 후 pop()
-			}
-		}
-
-		if (cmd == "size") {
-			cout << my_stack.size() << endl;
-		}
-
-		if (cmd == "empty") {
-			if (my_stack.empty()) {
-				cout << 1 << endl;
-			}
-			else {
-				cout << 0 << endl;
-			}
-		}
-
-		if (cmd == "top") {
-			if (my_stack.empty()) {   //스택이 비어있다면 -1 출력
-				cout << -1 << endl;
-			}
-			else {
-				cout << my_stack.top() << endl;
-			}
-		}
-
-	}	//end for
+		else if (cmd == "pop")
+			myStack.pop();
+		else if (cmd == "size")
+			cout << myStack.size() << '\n';
+		else if (cmd == "empty")
+			cout << myStack.empty() << '\n';
+		else if (cmd == "top")
+			cout << myStack.top() << '\n';
+	}
 }
