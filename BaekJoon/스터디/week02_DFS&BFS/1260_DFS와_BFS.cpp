@@ -1,45 +1,45 @@
-﻿#include <bits/stdc++.h>
+﻿#include <iostream>
+#include <vector>
+#include <queue>
+#include <algorithm>
 using namespace std;
 
-int N, M;
+bool visited[1001];
 
-void DFS(vector<vector<int>> &map, vector<bool> &visited, int V)
+void DFS(int now_v, const vector<vector<int>> &graph)
 {
-    cout << V << ' ';
-    visited[V] = true;
+    cout << now_v << ' ';
 
-    for (int i = 1; i <= N; i++)
+    visited[now_v] = true;
+
+    for (auto &next_v : graph[now_v])
     {
-        if (visited[i] == 0)
+        if (!visited[next_v])
         {
-            if (map[V][i] != 0)
-                DFS(map, visited, i);
+            DFS(next_v, graph);
         }
     }
 }
 
-void BFS(vector<vector<int>> &map, vector<bool> &visited, int V)
+void BFS(int start, const vector<vector<int>> &graph)
 {
     queue<int> q;
-    q.push(V);
-    visited[V] = true;
+    q.emplace(start);
+    visited[start] = true;
 
     while (!q.empty())
     {
-        V = q.front();
+        int now_v = q.front();
         q.pop();
 
-        cout << V << ' ';
+        cout << now_v << ' ';
 
-        for (int i = 1; i <= N; i++)
+        for (auto &next_v : graph[now_v])
         {
-            if (!visited[i])
+            if (!visited[next_v])
             {
-                if (map[V][i] == 1)
-                {
-                    q.push(i);
-                    visited[i] = true;
-                }
+                q.emplace(next_v);
+                visited[next_v] = true;
             }
         }
     }
@@ -47,25 +47,27 @@ void BFS(vector<vector<int>> &map, vector<bool> &visited, int V)
 
 int main()
 {
-    int V;
+    int N, M, V;
     cin >> N >> M >> V;
 
-    vector<vector<int>> map(N + 1, vector<int>(N + 1));
+    vector<vector<int>> graph(N + 1);
     int v1, v2;
-    for (int i = 0; i < M; i++)
+    for (int i = 0; i < M; ++i)
     {
         cin >> v1 >> v2;
-        map[v1][v2] = 1;
-        map[v2][v1] = 1;
+
+        graph[v1].emplace_back(v2);
+        graph[v2].emplace_back(v1);
     }
 
-    vector<bool> visited(N + 1);
+    // 방문할 수 있는 정점이 여러 개인 경우 정점 번호가 작은 것부터
+    for (auto &v : graph)
+        sort(v.begin(), v.end());
 
-    DFS(map, visited, V);
+    DFS(V, graph);
     cout << '\n';
 
-    for (int i = 0; i < visited.size(); i++)
-        visited[i] = 0;
+    fill(visited, visited + 1001, false);
 
-    BFS(map, visited, V);
+    BFS(V, graph);
 }
