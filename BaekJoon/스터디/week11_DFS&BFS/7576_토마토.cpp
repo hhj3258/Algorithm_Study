@@ -1,78 +1,80 @@
-#include <iostream>
-#include <vector>
-#include <queue>
-
+#include <bits/stdc++.h>
 using namespace std;
 
-// 동, 서, 남, 북
+struct POINT
+{
+    POINT(int _y, int _x) : y(_y), x(_x)
+    {
+    }
+    int y;
+    int x;
+};
+
 int dy[] = {0, 0, -1, 1};
 int dx[] = {1, -1, 0, 0};
 
-int Solve(int M, int N, vector<vector<int>> &box, vector<pair<int, int>> &targets)
-{
-    int day = 0;
-    queue<pair<int, int>> q;
-    for (auto target : targets)
-        q.emplace(target.first, target.second);
+int zero_cnt = 0;
+int answer = 1;
 
+void Solve(queue<POINT> q, vector<vector<int>> &box)
+{
     while (!q.empty())
     {
-        int y = q.front().first;
-        int x = q.front().second;
+        POINT now = q.front();
         q.pop();
 
-        day = max(day, box[y][x]);
-
-        // 4방향 순회
         for (int i = 0; i < 4; i++)
         {
-            int nextY = y + dy[i];
-            int nextX = x + dx[i];
+            POINT next(now.y + dy[i], now.x + dx[i]);
 
-            if (nextY < 0 || nextX < 0 || nextY >= N || nextX >= M)
+            if (next.y < 0 || next.x < 0)
+                continue;
+            if (next.y >= box.size() || next.x >= box[0].size())
                 continue;
 
-            if (box[nextY][nextX] == -1 || box[nextY][nextX] >= 1)
-                continue;
+            if (box[next.y][next.x] == 0)
+            {
+                q.emplace(next);
+                box[next.y][next.x] = box[now.y][now.x] + 1;
 
-            box[nextY][nextX] = box[y][x] + 1;
-            q.emplace(nextY, nextX);
+                answer = max(answer, box[next.y][next.x]);
+                zero_cnt--;
+            }
         }
     }
-
-    return day - 1;
 }
 
 int main()
 {
-    int M, N; // 가로, 세로
+    int N, M;
     cin >> M >> N;
 
+    // 1=익은 토마토
+    // 0=익지 않은 토마토
+    // -1=비어있는 칸
     vector<vector<int>> box(N, vector<int>(M));
-
-    vector<pair<int, int>> targets;
+    queue<POINT> q;
     for (int i = 0; i < N; i++)
+    {
         for (int j = 0; j < M; j++)
         {
             cin >> box[i][j];
 
             if (box[i][j] == 1)
-                targets.emplace_back(i, j);
-        }
-
-    int day = Solve(M, N, box, targets);
-
-    for (int i = 0; i < N; i++)
-    {
-        for (int j = 0; j < M; j++)
-        {
-            if (box[i][j] == 0)
             {
-                cout << "-1";
-                return 0;
+                // 익은 토마토 저장
+                q.emplace(POINT(i, j));
             }
+
+            if (box[i][j] == 0)
+                zero_cnt++;
         }
     }
 
-    cout << day;
+    Solve(q, box);
+
+    if (zero_cnt == 0)
+        cout << (answer - 1);
+    else
+        cout << -1;
 }
