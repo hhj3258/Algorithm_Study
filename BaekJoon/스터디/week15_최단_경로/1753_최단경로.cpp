@@ -16,7 +16,7 @@ void Dijkstra(const vector<vector<pair<int, int>>> &graph, const int start)
 
     while (!pq.empty())
     {
-        // pq가 오름차순이므로 내림차순 정렬하기 위해 마이너스를 붙여줌
+        // pq가 내림차순이므로 오름차순 정렬하기 위해 마이너스를 붙여줌
         int dist = -pq.top().first;
         int now_v1 = pq.top().second;
         pq.pop();
