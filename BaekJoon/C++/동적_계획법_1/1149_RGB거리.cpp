@@ -1,42 +1,31 @@
-﻿#include <iostream>
-#include <vector>
+﻿#include <bits/stdc++.h>
 using namespace std;
 
 int N;
 
-void Solve(vector<vector<int>> rgb)
+void Solve(const vector<vector<int>> &rgb)
 {
-    vector<vector<int>> dp(N, vector<int>(3));
-
-    for (int j = 0; j < 3; j++)
-        dp[0][j] = rgb[0][j];
+    vector<vector<int>> dp = rgb;
 
     for (int i = 1; i < N; i++)
     {
-        for (int j = 0; j < 3; j++)
-        {
-            if (j == 0)
-                dp[i][j] = min(dp[i - 1][1], dp[i - 1][2]) + rgb[i][j];
-            else if (j == 1)
-                dp[i][j] = min(dp[i - 1][0], dp[i - 1][2]) + rgb[i][j];
-            else if (j == 2)
-                dp[i][j] = min(dp[i - 1][0], dp[i - 1][1]) + rgb[i][j];
-        }
+        dp[i][0] = min(dp[i - 1][1], dp[i - 1][2]) + rgb[i][0];
+        dp[i][1] = min(dp[i - 1][0], dp[i - 1][2]) + rgb[i][1];
+        dp[i][2] = min(dp[i - 1][1], dp[i - 1][0]) + rgb[i][2];
     }
 
-    int answer = min(dp[N - 1][0], min(dp[N - 1][1], dp[N - 1][2]));
-
-    cout << answer;
+    cout << *min_element(dp[N - 1].begin(), dp[N - 1].end());
 }
 
 int main()
 {
     cin >> N;
-    vector<vector<int>> rgb(N, vector<int>(3));
 
-    for (int i = 0; i < rgb.size(); i++)
-        for (int j = 0; j < rgb[i].size(); j++)
-            cin >> rgb[i][j];
+    vector<vector<int>> rgb(N, vector<int>(3));
+    for (int i = 0; i < N; i++)
+    {
+        cin >> rgb[i][0] >> rgb[i][1] >> rgb[i][2];
+    }
 
     Solve(rgb);
 }
