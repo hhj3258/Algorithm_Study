@@ -1,48 +1,60 @@
-#include <iostream>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-void quickSort(int data[], int start, int end)
+int Partition(vector<int> &vec, int left, int right)
 {
-    if (start >= end)
-        return;
+    // 최악의 경우에서 성능 개선 : 좌측값과 중간값을 바꾼다.
+    int mid = (left + right) / 2;
+    swap(vec[mid], vec[left]);
 
-    int key = start;
-    int left = start + 1;
-    int right = end;
+    int pivot = left;
 
-    while (left <= right)
+    while (left < right)
     {
-        while (left <= end && data[left] <= data[key])
-        {
-            left++;
-        }
-
-        while (right > start && data[right] >= data[key])
-        {
+        while (vec[right] >= vec[pivot] && left < right)
             right--;
-        }
 
-        //엇갈렸다면 key와 right를 swap
-        if (left > right)
-        {
-            swap(data[key], data[right]);
-        }
-        else
-        {
-            swap(data[left], data[right]);
-        }
+        while (vec[left] <= vec[pivot] && left < right)
+            left++;
+
+        swap(vec[left], vec[right]);
     }
 
-    quickSort(data, start, right - 1);
-    quickSort(data, right + 1, end);
+    swap(vec[pivot], vec[left]);
+
+    return left;
+}
+
+void QuickSort(vector<int> &vec, int left, int right)
+{
+    // 범위지정이 잘못된 경우
+    if (left >= right)
+    {
+        return;
+    }
+
+    int pivot = Partition(vec, left, right);
+
+    // pivot 좌측
+    QuickSort(vec, left, pivot - 1);
+    // pivot 우측
+    QuickSort(vec, pivot + 1, right);
 }
 
 int main()
 {
-    int data[] = {4, 5, 3, 2, 2, 10};
-    quickSort(data, 0, 5);
+    srand((unsigned int)time(0));
 
-    for (int i : data)
-        cout << i << ' ';
+    vector<int> vec;
+    for (int i = 0; i < 10; i++)
+    {
+        vec.emplace_back(rand() % 10);
+        cout << vec[i] << ' ';
+    }
+    cout << endl;
+
+    QuickSort(vec, 0, vec.size() - 1);
+
+    for (auto &item : vec)
+        cout << item << ' ';
 }
