@@ -22,10 +22,23 @@ void combination(vector<int> datas, vector<int> temp, int index, int n, int r, i
     }
 }
 
+long long factorial(int n)
+{
+    if (n <= 1)
+        return 1;
+
+    return n * factorial(n - 1);
+}
+
 int main()
 {
-    vector<int> datas = {1, 2, 3, 4, 5};
+    vector<int> datas;
+    for (int i = 0; i < 8; i++)
+        datas.push_back(i);
     int n = datas.size();
-    int r = 3;
+    int r = 4;
     combination(datas, vector<int>(r), 0, n, r);
+
+    long long numberOfCases = factorial(datas.size()) / (factorial(r) * factorial(n - r));
+    cout << numberOfCases;
 }
