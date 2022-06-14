@@ -11,12 +11,6 @@ public:
         _tree.resize(size * 4);
     }
 
-    int GetXXX()
-    {
-        int sum = 1 + 2;
-        return sum;
-    }
-
     int MakeSegmentTree(vector<int> &nums, int node, int rangeStart, int rangeEnd)
     {
         if (rangeStart == rangeEnd)
