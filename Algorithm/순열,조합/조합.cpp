@@ -35,10 +35,10 @@ int main()
     vector<int> datas;
     for (int i = 0; i < 8; i++)
         datas.push_back(i);
-    int n = datas.size();
-    int r = 4;
+    int n = 4;
+    int r = 2;
     combination(datas, vector<int>(r), 0, n, r);
 
-    long long numberOfCases = factorial(datas.size()) / (factorial(r) * factorial(n - r));
+    long long numberOfCases = factorial(n) / (factorial(r) * factorial(n - r));
     cout << numberOfCases;
 }
